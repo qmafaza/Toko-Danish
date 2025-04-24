@@ -39,7 +39,7 @@
                 </div>
                 <div class="relative px-3">
                     <span class="absolute top-0 right-0 inline-flex text-xs h-5 w-5 font-bold text-white rounded-full bg-red-600 flex items-center justify-center" style="height: 15px; width: 15px; font-size: 10px;">{{ $cart_count }}</span>
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('cart.index') }}">
                         <x-cart-icon class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
                     </a>
                     </a>
