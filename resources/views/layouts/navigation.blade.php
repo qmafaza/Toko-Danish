@@ -18,13 +18,13 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link>
+                    <x-nav-link :href="route('dashboard')">
                         {{ __('Shop') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link>
+                    <x-nav-link :href="route('dashboard')"  >
                         {{ __('Pages') }}
                     </x-nav-link>
                 </div>
@@ -34,13 +34,13 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="px-3">
                     <a href="{{ route('dashboard') }}">
-                        <x-shop-icon class=""/>
+                        <x-shop-icon class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
                     </a>
                 </div>
                 <div class="relative px-3">
                     <span class="absolute top-0 right-0 inline-flex text-xs h-5 w-5 font-bold text-white rounded-full bg-red-600 flex items-center justify-center" style="height: 15px; width: 15px; font-size: 10px;">{{ $cart_count }}</span>
                     <a href="{{ route('dashboard') }}">
-                        <x-cart-icon class=""/>
+                        <x-cart-icon class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
                     </a>
                     </a>
                 </div>

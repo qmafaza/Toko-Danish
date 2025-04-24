@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class CartItem extends Model
 {
     protected $fillable = [
+        'cart_id',
         'quantity',
     ];
 
