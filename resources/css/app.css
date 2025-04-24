@@ -3,3 +3,5 @@
 @tailwind utilities;
 @import "tailwindcss";
 @source "../views";
+@import "flowbite/src/themes/default";
+@import 'flowbite';
