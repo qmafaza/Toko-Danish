@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Cart extends Model
 {
-    //
+    protected $fillable = ['user_id'];
 
     public function user(): HasOne
     {
