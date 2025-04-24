@@ -5,7 +5,7 @@
                 {{ __('Dashboard') }}
             </h2>
             <div class="ui input" style="width: 200px;"> <!-- Lebar search bar -->
-                <input type="text" placeholder="Search..." class="!py-1 !h-7"> <!-- Ukuran lebih kecil -->
+                <input type="text" placeholder="Search..." class="!py-1 !h-"> <!-- Ukuran lebih kecil -->
             </div>
         </div>
     </x-slot>
