@@ -22,7 +22,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="px-3">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('seller.registerseller') }}">
                         <x-shop-icon class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
                     </a>
                 </div>

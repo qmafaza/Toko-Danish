@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SellerController;
 
 
 
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+    Route::get('/seller/setup', [SellerController::class, 'index'])->name('seller.registerseller');
 });
 
 require __DIR__.'/auth.php';
