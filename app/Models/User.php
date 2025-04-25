@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    public function is_seller() 
+    {
+        return Seller::where('user_id', $this->id)->exists();
+    }
 }
