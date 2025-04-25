@@ -40,3 +40,4 @@ export default {
         require('flowbite/plugin'), // Tambahkan plugin Flowbite
     ],
 };
+
