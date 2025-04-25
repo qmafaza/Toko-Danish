@@ -9,10 +9,16 @@ class SellerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function setup()
     {
         return view('seller.registerseller');
     }
+
+    public function index()
+    {
+        return view('seller.sellerprofile');
+    }
+
 
     /**
      * Show the form for creating a new resource.

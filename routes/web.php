@@ -29,8 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-    
-    Route::get('/seller/setup', [SellerController::class, 'index'])->name('seller.registerseller');
+
+    Route::get('/seller/setup', [SellerController::class, 'setup'])->name('seller.registerseller');
+        Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.sellerprofile');
 });
 
 require __DIR__.'/auth.php';
