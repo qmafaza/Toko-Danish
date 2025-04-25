@@ -106,7 +106,7 @@
                 <div class="mt-6 flex gap-x-6 overflow-x-auto">
                     <!-- Product 1 -->
                     <div class="group relative min-w-[200px]">
-                        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
+                        <img src="image/casing/casing1.jpg"
                             alt="Front of men's Basic Tee in black."
                             class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
                         <div class="mt-4 flex justify-between">
