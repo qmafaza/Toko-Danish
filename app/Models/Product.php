@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'product_name',
         'description',
@@ -24,5 +28,10 @@ class Product extends Model
     public function ratings(): HasMany
     {
         return $this->hasMany(ProductRating::class);
+    }
+
+    public function category(): HasOne
+    {
+        return $this->hasOne(Category::class);
     }
 }
