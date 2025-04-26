@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $categories = ['casing', 'cpu', 'gpu', 'motherboard', 'peripherals', 'powersupply', 'ram', 'storage'];
+        $categories = ['Casing', 'CPU', 'GPU', 'Motherboard', 'Peripherals', 'Powersupply', 'RAM', 'Storage'];
 
         $j = 1;
         foreach ($categories as $category) {
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
                 Product::factory()->create([
                     'seller_id' => rand(1,10),
                     'category_id' => $j,
-                    'product_image' => $category . '/' . $category . $i . '.png'
+                    'image' => strtolower($category) . '/' . strtolower($category) . $i . '.jpg'
                 ]);
             }
 

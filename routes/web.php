@@ -1,19 +1,22 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
+use App\Models\Category;
 
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $categories = Category::all();
+    $products = Product::all()->take(5);
 
-Route::get('/', function () {
-    return view('dashboard');
+    return view('dashboard', compact('categories', 'products'));
 })->name('dashboard');
 // ->middleware(['auth', 'verified'])
 

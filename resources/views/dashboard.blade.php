@@ -41,49 +41,51 @@
                     </div>
 
                     <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v5m-3 0h6M4 11h16M5 15h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1Z"></path>
-                        </svg>
-                        <span class="text-sm font-medium text-gray-900 dark:text-white">Computer &amp; Office</span>
-                    </a>
-                    <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        @foreach ($categories as $category)
+                            <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v5m-3 0h6M4 11h16M5 15h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1Z"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">{{ $category->name }}</span>
+                            </a>
+                        @endforeach
+                    {{-- <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.872 9.687 20 6.56 17.44 4 4 17.44 6.56 20 16.873 9.687Zm0 0-2.56-2.56M6 7v2m0 0v2m0-2H4m2 0h2m7 7v2m0 0v2m0-2h-2m2 0h2M8 4h.01v.01H8V4Zm2 2h.01v.01H10V6Zm2-2h.01v.01H12V4Zm8 8h.01v.01H20V12Zm-2 2h.01v.01H18V14Zm2 2h.01v.01H20V16Z"></path>
                         </svg>
                         <span class="text-sm font-medium text-gray-900 dark:text-white">Collectibles &amp; Toys</span>
-                    </a>
-                    <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    </a> --}}
+                    {{-- <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v13H7a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M9 3v14m7 0v4"></path>
                         </svg>
                         <span class="text-sm font-medium text-gray-900 dark:text-white">Books</span>
-                    </a>
-                    <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    </a> --}}
+                    {{-- <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"></path>
                         </svg>
                         <span class="text-sm font-medium text-gray-900 dark:text-white">Fashion/Clothes</span>
-                    </a>
-                    <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    </a> --}}
+                    {{-- <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4.37 7.657c2.063.528 2.396 2.806 3.202 3.87 1.07 1.413 2.075 1.228 3.192 2.644 1.805 2.289 1.312 5.705 1.312 6.705M20 15h-1a4 4 0 0 0-4 4v1M8.587 3.992c0 .822.112 1.886 1.515 2.58 1.402.693 2.918.351 2.918 2.334 0 .276 0 2.008 1.972 2.008 2.026.031 2.026-1.678 2.026-2.008 0-.65.527-.9 1.177-.9H20M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                         </svg>
                         <span class="text-sm font-medium text-gray-900 dark:text-white">Sports &amp; Outdoors</span>
-                    </a>
-                    <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    </a> --}}
+                    {{-- <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7h.01m3.486 1.513h.01m-6.978 0h.01M6.99 12H7m9 4h2.706a1.957 1.957 0 0 0 1.883-1.325A9 9 0 1 0 3.043 12.89 9.1 9.1 0 0 0 8.2 20.1a8.62 8.62 0 0 0 3.769.9 2.013 2.013 0 0 0 2.03-2v-.857A2.036 2.036 0 0 1 16 16Z"></path>
                         </svg>
                         <span class="text-sm font-medium text-gray-900 dark:text-white">Painting &amp; Hobby</span>
-                    </a>
-                    <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    </a> --}}
+                    {{-- <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 9a3 3 0 0 1 3-3m-2 15h4m0-3c0-4.1 4-4.9 4-9A6 6 0 1 0 6 9c0 4 4 5 4 9h4Z"></path>
                         </svg>
                         <span class="text-sm font-medium text-gray-900 dark:text-white">Electronics</span>
-                    </a>
-                    <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    </a> --}}
+                    {{-- <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path
                             stroke="currentColor"
@@ -94,7 +96,7 @@
                         ></path>
                         </svg>
                         <span class="text-sm font-medium text-gray-900 dark:text-white">Food &amp; Grocery</span>
-                    </a>
+                    </a> --}}
 
                     </div>
                 </section>
@@ -105,8 +107,29 @@
                 <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
                 <div class="mt-6 flex gap-x-6 overflow-x-auto">
                     <!-- Product 1 -->
+                    @foreach ($products as $product)
+                        <div class="group relative min-w-[200px]">
+                            <img src="image/{{ $product->image }}"
+                                alt="Front of men's Basic Tee in black."
+                                class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
+                            <div class="mt-4 flex justify-between">
+                                <div>
+                                    <h3 class="text-sm text-gray-700">
+                                        <a href="#">
+                                            <span aria-hidden="true" class="absolute inset-0"></span>
+                                            {{ $product->name }}
+                                        </a>
+                                    </h3>
+                                    <p class="mt-1 text-sm text-gray-500">{{ Str::of($product->description)->limit(30) }}</p>
+                                </div>
+                                <p class="text-sm font-medium text-gray-900">Rp {{ $product->price }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    {{-- <!-- Product 2 -->
                     <div class="group relative min-w-[200px]">
-                        <img src="image/casing/casing1.jpg"
+                        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
                             alt="Front of men's Basic Tee in black."
                             class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
                         <div class="mt-4 flex justify-between">
@@ -123,25 +146,6 @@
                         </div>
                     </div>
 
-                    <!-- Product 2 -->
-                    <div class="group relative min-w-[200px]">
-                        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                            alt="Front of men's Basic Tee in black."
-                            class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-sm text-gray-700">
-                                    <a href="#">
-                                        <span aria-hidden="true" class="absolute inset-0"></span>
-                                        Basic Tee
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500">Black</p>
-                            </div>
-                            <p class="text-sm font-medium text-gray-900">$35</p>
-                        </div>
-                    </div>
-
                     <!-- More products... -->
                     <div class="group relative">
                         <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
@@ -197,7 +201,7 @@
                             </div>
                             <p class="text-sm font-medium text-gray-900">$35</p>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -213,26 +217,28 @@
                         <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
                         <div class="mt-6 flex gap-x-6 overflow-x-auto">
                             <!-- Product 1 -->
-                            <div class="group relative min-w-[200px]">
-                                <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                                    alt="Front of men's Basic Tee in black."
-                                    class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                                <div class="mt-4 flex justify-between">
-                                    <div>
-                                        <h3 class="text-sm text-gray-700">
-                                            <a href="#">
-                                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                                Basic Tee
-                                            </a>
-                                        </h3>
-                                        <p class="mt-1 text-sm text-gray-500">Black</p>
+                            @foreach ($products as $product)
+                                <div class="group relative min-w-[200px]">
+                                    <img src="image/{{ $product->image }}"
+                                        alt="Front of men's Basic Tee in black."
+                                        class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
+                                    <div class="mt-4 flex justify-between">
+                                        <div>
+                                            <h3 class="text-sm text-gray-700">
+                                                <a href="#">
+                                                    <span aria-hidden="true" class="absolute inset-0"></span>
+                                                    {{ $product->name }}
+                                                </a>
+                                            </h3>
+                                            <p class="mt-1 text-sm text-gray-500">{{ Str::of($product->description)->limit(30) }}</p>
+                                        </div>
+                                        <p class="text-sm font-medium text-gray-900">Rp {{ $product->price }}</p>
                                     </div>
-                                    <p class="text-sm font-medium text-gray-900">$35</p>
                                 </div>
-                            </div>
+                            @endforeach
 
                             <!-- Product 2 -->
-                            <div class="group relative min-w-[200px]">
+                            {{-- <div class="group relative min-w-[200px]">
                                 <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
                                     alt="Front of men's Basic Tee in black."
                                     class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
@@ -248,10 +254,10 @@
                                     </div>
                                     <p class="text-sm font-medium text-gray-900">$35</p>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!-- More products... -->
-                            <div class="group relative">
+                            {{-- <div class="group relative">
                                 <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
                                     alt="Front of men&#039;s Basic Tee in black."
                                     class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
@@ -267,10 +273,10 @@
                                     </div>
                                     <p class="text-sm font-medium text-gray-900">$35</p>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!-- More products... -->
-                            <div class="group relative">
+                            {{-- <div class="group relative">
                                 <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
                                     alt="Front of men&#039;s Basic Tee in black."
                                     class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
@@ -286,10 +292,10 @@
                                     </div>
                                     <p class="text-sm font-medium text-gray-900">$35</p>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!-- More products... -->
-                            <div class="group relative">
+                            {{-- <div class="group relative">
                                 <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
                                     alt="Front of men&#039;s Basic Tee in black."
                                     class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
@@ -305,7 +311,7 @@
                                     </div>
                                     <p class="text-sm font-medium text-gray-900">$35</p>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
