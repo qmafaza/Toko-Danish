@@ -22,9 +22,23 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="px-3">
-                    <a href="{{ route('seller.registerseller') }}">
-                        <x-shop-icon class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
-                    </a>
+                    @auth
+
+                        @if (Auth::user()->is_seller())
+                            <a href="{{ route('seller.profile') }}">
+                                <x-shop-icon class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
+                            </a>
+                        @else
+                            <a href="{{ route('seller.register') }}">
+                                <x-shop-icon class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
+                            </a>
+                        @endif
+                    
+                    @else
+                        <a href="{{ route('seller.register') }}">
+                            <x-shop-icon class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
+                        </a>
+                    @endauth
                 </div>
                 <div class="relative px-3">
                     @auth
