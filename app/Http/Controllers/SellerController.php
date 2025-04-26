@@ -11,12 +11,12 @@ class SellerController extends Controller
      */
     public function setup()
     {
-        return view('seller.registerseller');
+        return view('seller.register');
     }
 
     public function index()
     {
-        return view('seller.sellerprofile');
+        return view('seller.profile');
     }
 
 
