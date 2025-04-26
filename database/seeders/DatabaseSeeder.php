@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
                 Product::factory()->create([
                     'seller_id' => rand(1,10),
                     'category_id' => $j,
-                    'product_image' => $category . $i . '.png'
+                    'product_image' => $category . '/' . $category . $i . '.png'
                 ]);
             }
 
