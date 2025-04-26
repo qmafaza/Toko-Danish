@@ -28,13 +28,16 @@ class SellerController extends Controller
         return view('seller.profile', compact('seller'));
     }
 
-        public function product()
-    {
-        $seller_id = DB::table('sellers')->where('user_id', Auth::user()->id)->firstOrFail()->id;
-        $products = DB::table('products')->where('seller_id', $seller_id)->firstOrFail();
+    public function product()  
+    {  
+        $seller = Seller::with('products.category') // Eager load products with their categories  
+                        ->where('user_id', Auth::user()->id)  
+                        ->firstOrFail();  
 
-        return view('seller.product', compact('products'));
-    }
+        $products = $seller->products;  
+
+        return view('seller.product', compact('products'));  
+    }  
 
 
     /**
