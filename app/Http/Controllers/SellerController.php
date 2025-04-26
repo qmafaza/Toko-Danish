@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Seller;
+
+use Illuminate\Support\Facades\Auth;
+
+
+
 class SellerController extends Controller
 {
     /**
@@ -17,6 +23,11 @@ class SellerController extends Controller
     public function index()
     {
         return view('seller.profile');
+    }
+
+        public function product()
+    {
+        return view('seller.product');
     }
 
 
@@ -33,7 +44,24 @@ class SellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'store_name' => 'required|string|max:255',
+            'contact_person' => 'required|string|max:255',
+            'contact_number' => 'required|string|max:20',
+            'email' => 'required|email|unique:sellers,email',
+            'seller_address' => 'required|string|max:255',
+        ]);
+
+        // Pastikan user sudah login
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Anda harus login terlebih dahulu');
+        }
+
+        $validated['user_id'] = Auth::id();
+
+        Seller::create($validated);
+
+        return redirect()->route('seller.profile')->with('success', 'Toko berhasil dibuat!');
     }
 
     /**

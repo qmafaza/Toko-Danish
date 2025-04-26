@@ -31,9 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
     Route::get('/seller/setup', [SellerController::class, 'setup'])->name('seller.register');
+    Route::post('/seller', [SellerController::class, 'store'])->name('seller.store');
 
     Route::middleware('seller')->group(function () {
         Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.profile');
+        Route::get('/seller/product', [SellerController::class, 'product'])->name('seller.product');
     });
 });
 

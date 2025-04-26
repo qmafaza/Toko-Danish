@@ -18,11 +18,13 @@ class Seller extends Model
         'contact_number',
         'email',
         'seller_address',
+        'user_id' // Tambahkan ini
     ];
 
-    public function user(): HasOne
+    // Ubah HasOne menjadi BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function products(): HasMany
