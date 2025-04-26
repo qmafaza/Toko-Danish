@@ -18,6 +18,8 @@ class Product extends Model
         'stock',
         'product_price',
         'product_image',
+        'category_id',
+        'seller_id'
     ];
 
     public function seller(): BelongsTo
