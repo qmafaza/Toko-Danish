@@ -25,6 +25,11 @@ class SellerController extends Controller
         return view('seller.profile');
     }
 
+        public function product()
+    {
+        return view('seller.product');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -55,8 +60,8 @@ class SellerController extends Controller
         $validated['user_id'] = Auth::id();
 
         Seller::create($validated);
-    
-        return redirect()->route('seller.sellerprofile')->with('success', 'Toko berhasil dibuat!');
+
+        return redirect()->route('seller.profile')->with('success', 'Toko berhasil dibuat!');
     }
 
     /**
