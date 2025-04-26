@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Seller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -22,12 +23,17 @@ class SellerController extends Controller
 
     public function index()
     {
-        return view('seller.profile');
+        $seller = DB::table('sellers')->where('user_id', Auth::user()->id)->firstOrFail();
+
+        return view('seller.profile', compact('seller'));
     }
 
         public function product()
     {
-        return view('seller.product');
+        $seller_id = DB::table('sellers')->where('user_id', Auth::user()->id)->firstOrFail()->id;
+        $products = DB::table('products')->where('seller_id', $seller_id)->firstOrFail();
+
+        return view('seller.product', compact('products'));
     }
 
 
