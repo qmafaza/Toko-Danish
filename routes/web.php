@@ -36,11 +36,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
+    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
     Route::get('/seller/setup', [SellerController::class, 'setup'])->name('seller.register');
     Route::post('/seller', [SellerController::class, 'store'])->name('seller.store');
-
+    
 
     Route::middleware('seller')->group(function () {
         Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.profile');
