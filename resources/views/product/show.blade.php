@@ -38,7 +38,7 @@
             <p
               class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"
             >
-              Rp {{ $product->price }}
+              Rp {{ number_format($product->price) }}
             </p>
 
             <div class="flex items-center gap-2 mt-2 sm:mt-0">
@@ -152,10 +152,7 @@
           <p class="mb-6 text-gray-500 dark:text-gray-400">
             {{ $product->description }}
           </p>
-
-          <p class="text-gray-500 dark:text-gray-400">
-            {{ $product->description }}
-          </p>
+          
         </div>
       </div>
     </div>

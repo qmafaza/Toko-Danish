@@ -74,7 +74,7 @@
                                             </div>
                                             <div class="text-end md:order-4 md:w-32">
                                                 <p class="text-base font-bold text-gray-900 dark:text-white">
-                                                    {{ $cart_item->product->price }}</p>
+                                                    Rp {{ number_format($cart_item->product->price, 2) }}</p>
                                             </div>
                                         </div>
 
@@ -122,14 +122,14 @@
                                             <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Subtotal
                                             </dt>
                                             <dd class="text-base font-medium text-gray-900 dark:text-white">
-                                                {{ number_format($cart->total_price, 2) }}</dd>
+                                                Rp {{ number_format($cart->total_price, 2) }}</dd>
                                         </dl>
 
                                         <dl class="flex items-center justify-between gap-4">
                                             <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Tax
                                                 (10 %)</dt>
                                             <dd class="text-base font-medium text-gray-900 dark:text-white">
-                                                {{ number_format($cart->total_price * 0.1, 2) }}</dd>
+                                                Rp {{ number_format($cart->total_price * 0.1, 2) }}</dd>
                                         </dl>
                                     </div>
 
@@ -137,7 +137,7 @@
                                         class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                                         <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
                                         <dd class="text-base font-bold text-gray-900 dark:text-white">
-                                            {{ number_format($cart->total_price * 1.1, 2) }}</dd>
+                                            Rp {{ number_format($cart->total_price * 1.1, 2) }}</dd>
                                     </dl>
                                 </div>
 
@@ -147,7 +147,7 @@
 
                                 <div class="flex items-center justify-center gap-2">
                                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>
-                                    <a href="#" title=""
+                                    <a href="{{route('dashboard')}}" title=""
                                         class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
                                         Continue Shopping
                                         <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
