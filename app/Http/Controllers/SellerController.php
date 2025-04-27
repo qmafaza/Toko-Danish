@@ -54,7 +54,7 @@ class SellerController extends Controller
              'price' => 'required|numeric',
              'stock' => 'required|integer',
              'description' => 'nullable|string',
-             'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
          ]);
  
          // Ambil user yang login
@@ -69,8 +69,8 @@ class SellerController extends Controller
  
          // Upload image kalau ada
          $imagePath = null;
-         if ($request->hasFile('product_image')) {
-             $imagePath = $request->file('product_image')->store('product_images', 'public');
+         if ($request->hasFile('image')) {
+             $imagePath = $request->file('image')->store('images', 'public');
          }
  
          // Simpan produk ke database
@@ -81,7 +81,7 @@ class SellerController extends Controller
          $product->price = $request->price;
          $product->stock = $request->stock;
          $product->description = $request->description;
-         $product->image = $imagePath;
+         $product->image = '/image/cpu' . $imagePath;
          $product->save();
  
          // Redirect atau response
