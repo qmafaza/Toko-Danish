@@ -122,7 +122,9 @@
                             </div>
         
                             <a href="#"
-                                class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">{{ $product->name }}</a>
+                                class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white line-clamp-2 overflow-hidden text-ellipsis">
+                                {{ $product->name }}
+                            </a>
         
                             <div class="mt-2 flex items-center gap-2">
                                 <div class="flex items-center">
@@ -183,10 +185,14 @@
                             </ul>
         
                             <div class="mt-4 flex items-center justify-between gap-4">
-                                <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white">Rp {{ number_format($product->price) }}</p>
-        
+                                <div class="flex-shrink-0 min-w-0">
+                                    <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">
+                                        Rp {{ number_format($product->price) }}
+                                    </p>
+                                </div>
+                                
                                 <button type="button"
-                                    class="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                    class="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 whitespace-nowrap">
                                     <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
