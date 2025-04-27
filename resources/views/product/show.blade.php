@@ -152,10 +152,7 @@
           <p class="mb-6 text-gray-500 dark:text-gray-400">
             {{ $product->description }}
           </p>
-
-          <p class="text-gray-500 dark:text-gray-400">
-            {{ $product->description }}
-          </p>
+          
         </div>
       </div>
     </div>
