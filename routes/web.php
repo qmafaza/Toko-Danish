@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('seller')->group(function () {
         Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.profile');
         Route::get('/seller/product', [SellerController::class, 'product'])->name('seller.product');
+        Route::post('/seller/create', [SellerController::class, 'create_product'])->name('seller.create-product');
     });
 });
 
