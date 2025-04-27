@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('seller_id')->constrained('sellers');
             $table->foreignId('category_id')->constrained('categories');
             $table->string('name', 255);
-            $table->string('description', 255);
+            $table->string('description', 500);
             $table->integer('stock');
             $table->integer('price');
             $table->binary('image')->nullable();
