@@ -42,12 +42,12 @@
                                             stroke-width="2" d="m9 5 7 7-7 7" />
                                     </svg>
                                     <span
-                                        class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400 md:ms-2">Electronics</span>
+                                        class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400 md:ms-2">Products</span>
                                 </div>
                             </li>
                         </ol>
                     </nav>
-                    <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Electronics</h2>
+                    <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Products</h2>
                 </div>
                 <div class="flex items-center space-x-4">
                     <button data-modal-toggle="filterModal" data-modal-target="filterModal" type="button"
@@ -183,7 +183,7 @@
                             </ul>
         
                             <div class="mt-4 flex items-center justify-between gap-4">
-                                <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">Rp {{ $product->price }}</p>
+                                <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white">Rp {{ number_format($product->price) }}</p>
         
                                 <button type="button"
                                     class="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
