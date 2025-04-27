@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Dashboard') }}
+                {{ __('Product') }}
             </h2>
             <div class="ui input" style="width: 200px;"> <!-- Lebar search bar -->
                 <input type="text" placeholder="Search..." class="!py-1 !h-8"> <!-- Ukuran lebih kecil -->
