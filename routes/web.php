@@ -14,7 +14,7 @@ use App\Models\Category;
 
 Route::get('/', function () {
     $categories = Category::all();
-    $products = Product::all()->take(5);
+    $products = Product::all()->take(15);
 
     return view('dashboard', compact('categories', 'products'));
 })->name('dashboard');
