@@ -23,26 +23,27 @@ class CartController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-public function create(Request $request)
-{
-    $userId = Auth::user()->id; // kalau kamu pakai auth, ambil user id
-    $productId = $request->input('product_id'); // ambil product_id dari form POST
+    public function create(Request $request)
+    {
+        $userId = Auth::user()->id;
+        $productId = $request->input('product_id');
 
-    // 1. Cari cart user, kalau belum ada, buat baru
-    $cart = Cart::firstOrCreate(
-        ['user_id' => $userId],
-        ['status' => 'active'] // atau set kolom lain sesuai kebutuhan
-    );
+        $cart = Cart::firstOrCreate(
+            ['user_id' => $userId],
+        );
 
-        CartItem::create([
-        'cart_id'    => $cart->id,
-        'product_id' => $productId,
-        'quantity'   => 1, // default quantity 1, atau bisa ambil dari request
-    ]);
+        $cart_item = CartItem::create([
+            'cart_id'    => $cart->id,
+            'product_id' => $productId,
+            'quantity'   => 1,
+        ]);
 
-    // 3. (Opsional) Redirect ke halaman cart atau kasih flash message
-    return redirect()->route('cart.index')->with('success', 'Product added to cart!');
-}
+        $cart->total_item++;
+        $cart->total_price += $cart_item->product->price;
+        $cart->save();
+
+        return redirect()->route('cart.index')->with('success', 'Product added to cart!');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -81,14 +82,21 @@ public function create(Request $request)
      */
     public function destroy(string $id)
     {
-                // Kalau cart item model kamu namanya CartItem:
-        $cartItem = \App\Models\CartItem::find($id);
+        $cart = Cart::firstOrCreate(
+            ['user_id' => Auth::user()->id],
+        );
 
-        if (!$cartItem) {
+        $cart_item = CartItem::find($id);
+
+        if (!$cart_item) {
             return redirect()->back()->with('error', 'Item not found.');
         }
 
-        $cartItem->delete();
+        $cart_item->delete();
+
+        $cart->total_item--;
+        $cart->total_price -= $cart_item->product->price;
+        $cart->save();
 
         return redirect()->back()->with('success', 'Item removed from cart.');
     }

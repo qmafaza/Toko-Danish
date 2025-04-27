@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             if (Auth::check()) {
-                $view->with('cart_count', Auth::user()->cart->count_item ?? 0);
+                $view->with('cart_count', Auth::user()->cart->total_item);
             }
         });
     }

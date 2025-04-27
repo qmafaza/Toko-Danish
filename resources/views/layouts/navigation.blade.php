@@ -26,7 +26,7 @@
 
             <!-- Search Bar - Added in the center -->
             <div class="flex-1 max-w-md mx-4 hidden sm:flex my-3">
-                <form  method="GET" class="w-full">
+                <form  method="GET" action="{{ route('product.index') }}" class="w-full">
                     <div class="relative">
                         <input
                             type="text"
