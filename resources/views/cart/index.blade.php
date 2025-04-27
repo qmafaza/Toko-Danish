@@ -74,7 +74,7 @@
                                             </div>
                                             <div class="text-end md:order-4 md:w-32">
                                                 <p class="text-base font-bold text-gray-900 dark:text-white">
-                                                    ${{ $cart_item->product->price }}</p>
+                                                    Rp{{ $cart_item->product->price }}</p>
                                             </div>
                                         </div>
 
@@ -129,7 +129,7 @@
                     $tax = $subtotal * $taxRate;
 
                     // Shipping cost (fixed or calculated)
-                    $shipping = 99; // Fixed shipping cost
+                    $shipping = 15; // Fixed shipping cost
 
                     // Calculate total
                     $total = $subtotal + $tax + $shipping;
@@ -137,23 +137,23 @@
 
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Subtotal</dt>
-                    <dd class="text-base font-medium text-gray-900 dark:text-white">${{ number_format($subtotal, 2) }}</dd>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">Rp{{ number_format($subtotal, 2) }}</dd>
                 </dl>
 
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Shipping</dt>
-                    <dd class="text-base font-medium text-gray-900 dark:text-white">${{ number_format($shipping, 2) }}</dd>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">Rp{{ number_format($shipping, 2) }}</dd>
                 </dl>
 
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Tax ({{ $taxRate * 100 }}%)</dt>
-                    <dd class="text-base font-medium text-gray-900 dark:text-white">${{ number_format($tax, 2) }}</dd>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">Rp{{ number_format($tax, 2) }}</dd>
                 </dl>
             </div>
 
             <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                 <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
-                <dd class="text-base font-bold text-gray-900 dark:text-white">${{ number_format($total, 2) }}</dd>
+                <dd class="text-base font-bold text-gray-900 dark:text-white">Rp{{ number_format($total, 2) }}</dd>
             </dl>
         </div>
 
