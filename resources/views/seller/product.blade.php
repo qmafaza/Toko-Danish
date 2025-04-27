@@ -677,7 +677,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            {{-- <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <td class="p-4 w-4">
                                     <div class="flex items-center">
                                         <input id="checkbox-table-search-1" type="checkbox"
@@ -1343,7 +1343,7 @@
                                         </button>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
