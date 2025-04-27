@@ -18,6 +18,8 @@ class Product extends Model
         'stock',
         'product_price',
         'product_image',
+        'category_id',
+        'seller_id'
     ];
 
     public function seller(): BelongsTo
@@ -30,8 +32,8 @@ class Product extends Model
         return $this->hasMany(ProductRating::class);
     }
 
-    public function category(): HasOne
+    public function category(): BelongsTo
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }

@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('seller_id')->constrained('sellers');
             $table->foreignId('category_id')->constrained('categories');
-            $table->string('product_name', 255);
+            $table->string('name', 255);
             $table->string('description', 255);
             $table->integer('stock');
-            $table->integer('product_price');
-            $table->binary('product_image')->nullable();
+            $table->integer('price');
+            $table->binary('image')->nullable();
             $table->timestamps();
         });
     }

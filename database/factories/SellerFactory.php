@@ -17,7 +17,11 @@ class SellerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'store_name' => fake()->name(),
+            'contact_person' => fake()->name(),
+            'contact_number' => fake()->phoneNumber(),
+            'email' => fake()->email(),
+            'seller_address' => fake()->address()
         ];
     }
 }
