@@ -87,7 +87,6 @@ public function create(Request $request)
         if (!$cartItem) {
             return redirect()->back()->with('error', 'Item not found.');
         }
-
         $cartItem->delete();
 
         return redirect()->back()->with('success', 'Item removed from cart.');
