@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
 use App\Models\Category;
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/seller/setup', [SellerController::class, 'setup'])->name('seller.register');
     Route::post('/seller', [SellerController::class, 'store'])->name('seller.store');
+
 
     Route::middleware('seller')->group(function () {
         Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.profile');
