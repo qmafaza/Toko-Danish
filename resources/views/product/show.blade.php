@@ -125,61 +125,30 @@
               </a>
             </div>
           </div>
+            <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
+                <form action="{{ route('cart.add', $product->id) }}" method="POST"
+                    class="mt-4 sm:mt-0 flex items-center justify-center">
+                    @csrf
 
-          <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
-            <a
-              href="#"
-              title="Add to Favorites"
-              class="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              role="button"
-            >
-              <svg
-                class="w-5 h-5 -ms-2 me-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
-                />
-              </svg>
-              Add to favorites
-            </a>
+                    <!-- Input hidden untuk product_id -->
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-            <a
-              href="#"
-              title="Add to Cart"
-              class="text-white mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
-              role="button"
-            >
-              <svg
-                class="w-5 h-5 -ms-2 me-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
-                />
-              </svg>
+                    <button type="submit" title="Add to Cart"
+                        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center">
+                        <svg class="w-5 h-5 -ms-2 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                        </svg>
+                        Add to cart
+                    </button>
+                </form>
+            </div>
 
-              Add to cart
-            </a>
-          </div>
+
+
+
+
 
           <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
@@ -590,7 +559,7 @@
       <button type="button" class="mb-2 me-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">View more reviews</button>
     </div>
   </div>
-  
+
   <!-- Ini bagian barang yang bisa dicek oleh user -->
 <div class="hidden xl:mt-8 xl:block">
                             <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">People also bought</h3>

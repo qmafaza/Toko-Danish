@@ -1427,7 +1427,8 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form action="#">
+                <form action="{{ route('seller.create-product') }}" method= "POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="grid gap-4 mb-4 sm:grid-cols-2">
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
@@ -1437,22 +1438,19 @@
                                 placeholder="Type product name" required="">
                         </div>
                         <div><label for="category"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label><select
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label><select name="category_id"
                                 id="category"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option selected="">Select category</option>
-                                <option value="TV">TV/Monitors</option>
-                                <option value="PC">PC</option>
-                                <option value="GA">Gaming/Console</option>
-                                <option value="PH">Phones</option>
+                                <option value="1">CPU</option>
+                                <option value="2">GPU</option>
+                                <option value="3">Power Supplay</option>
+                                <option value="4">Storage</option>
+                                <option value="5">Motherboard</option>
+                                <option value="6">Casing PC</option>
+                                <option value="7">RAM</option>
+                                <option value="8">Peripherals</option>
                             </select></div>
-                        <div>
-                            <label for="brand"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                            <input type="text" name="brand" id="brand"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Product brand" required="">
-                        </div>
                         <div>
                             <label for="price"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
@@ -1460,65 +1458,19 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="$2999" required="">
                         </div>
-                        <div class="grid gap-4 sm:col-span-2 md:gap-6 sm:grid-cols-4">
-                            <div>
-                                <label for="weight"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Item weight
-                                    (kg)</label>
-                                <input type="number" name="weight" id="weight"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="12" required="">
-                            </div>
-                            <div>
-                                <label for="length"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lenght (cm)</label>
-                                <input type="number" name="length" id="length"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="105" required="">
-                            </div>
-                            <div>
-                                <label for="breadth"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breadth
-                                    (cm)</label>
-                                <input type="number" name="breadth" id="breadth"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="15" required="">
-                            </div>
-                            <div>
-                                <label for="width"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Width (cm)</label>
-                                <input type="number" name="width" id="width"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="23" required="">
-                            </div>
+                        <div>
+                            <label for="Stock"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
+                            <input type="number" name="stock" id="stock"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="8888" required="">
                         </div>
                         <div class="sm:col-span-2"><label for="description"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label><textarea
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label><textarea name="description"
                                 id="description" rows="4"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Write product description here"></textarea></div>
                     </div>
-                    <div class="mb-4 space-y-4 sm:flex sm:space-y-0">
-                        <div class="flex items-center mr-4">
-                            <input id="inline-checkbox" type="checkbox" value="" name="sellingType"
-                                class="w-4 h-4 bg-gray-100 rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="inline-checkbox"
-                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">In-store only</label>
-                        </div>
-                        <div class="flex items-center mr-4">
-                            <input id="inline-2-checkbox" type="checkbox" value="" name="sellingType"
-                                class="w-4 h-4 bg-gray-100 rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="inline-2-checkbox"
-                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Online selling
-                                only</label>
-                        </div>
-                        <div class="flex items-center mr-4">
-                            <input checked="" id="inline-checked-checkbox" type="checkbox" value="" name="sellingType"
-                                class="w-4 h-4 bg-gray-100 rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="inline-checked-checkbox"
-                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Both in-store and
-                                online</label>
-                        </div>
                     </div>
                     <div class="mb-4">
                         <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Images</span>
@@ -1538,7 +1490,7 @@
                                     <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
                                         800x400px)</p>
                                 </div>
-                                <input id="dropzone-file" type="file" class="hidden">
+                                <input id="dropzone-file" type="file" class="hidden" name="product_image">
                             </label>
                         </div>
                     </div>
@@ -1569,7 +1521,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div>  
     </div>
     <!-- drawer component -->
     <form action="#" id="drawer-update-product"
