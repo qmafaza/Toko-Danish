@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         $cart = Auth::user()->cart;
         $cart_items = $cart->products;
-        
+
         return view('cart.index', compact('cart', 'cart_items'));//
     }
 
