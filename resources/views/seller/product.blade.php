@@ -677,7 +677,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            {{-- <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <td class="p-4 w-4">
                                     <div class="flex items-center">
                                         <input id="checkbox-table-search-1" type="checkbox"
@@ -1343,7 +1343,7 @@
                                         </button>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
@@ -1446,14 +1446,14 @@
                             <select name="category_id" id="category"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option selected class="text-gray-400 dark:text-gray-400">Select category</option>
-                                <option value="1">CPU</option>
-                                <option value="2">GPU</option>
-                                <option value="3">Power Supply</option>
-                                <option value="4">Storage</option>
-                                <option value="5">Motherboard</option>
-                                <option value="6">Casing PC</option>
+                                <option value="1">Casing PC</option>    
+                                <option value="2">CPU</option>
+                                <option value="3">GPU</option>
+                                <option value="4">Motherboard</option>
+                                <option value="5">Peripherals</option>
+                                <option value="6">Power Supply</option>
                                 <option value="7">RAM</option>
-                                <option value="8">Peripherals</option>
+                                <option value="8">Storage</option>
                             </select>
                         </div>
 
@@ -1463,24 +1463,21 @@
                             </label>
                             <input type="number" name="price" id="price"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="$9999" required="">
+                                placeholder="Type product price (in rupiah)" required="">
+                        </div>
+                        <div>
+                            <label for="stock" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
+                            <input type="number" name="stock" id="stock"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Type product stock" required="">
                         </div>
 
-
-                            <div>
-                                <label for="stock" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
-                                <input type="number" name="stock" id="stock"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="8888" required="">
-                            </div>
-
-                            <div class="sm:col-span-2">
-                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                <textarea name="description" id="description" rows="4"
-                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Write product description here"></textarea>
-                            </div>
-
+                        <div class="sm:col-span-2">
+                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                            <textarea name="description" id="description" rows="4"
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Write product description here"></textarea>
+                        </div>
                     </div>
                     </div>
                     <div class="mb-4">
@@ -1502,8 +1499,11 @@
                                         800x400px)</p>
                                 </div>
                                 <input id="dropzone-file" type="file" class="hidden" name="product_image">
+                                
+                                
                             </label>
                         </div>
+                        <div id="preview-container"></div>
                     </div>
                     <div class="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
                         <button type="submit"
@@ -1531,6 +1531,46 @@
                         </button>
                     </div>
                 </form>
+
+                <script>
+                    const dropzoneFile = document.getElementById('dropzone-file');
+                    const previewContainer = document.getElementById('preview-container');
+                
+                    dropzoneFile.addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            
+                            reader.onload = function(e) {
+                                // Clear old content
+                                previewContainer.innerHTML = '';
+                
+                                // Add classes only when an image is selected
+                                previewContainer.className = 'mt-8 shadow-md rounded-lg p-2 bg-white dark:bg-gray-800';
+                
+                                // Create image preview
+                                const imgPreview = document.createElement('img');
+                                imgPreview.src = e.target.result;
+                                imgPreview.classList.add('mx-auto', 'rounded-lg', 'max-h-60');
+                
+                                // Create file name display
+                                const fileNameDisplay = document.createElement('p');
+                                fileNameDisplay.textContent = `Selected file: ${file.name}`;
+                                fileNameDisplay.classList.add('mt-2', 'text-sm', 'text-center', 'text-gray-500', 'dark:text-gray-400');
+                
+                                // Append to container
+                                previewContainer.appendChild(imgPreview);
+                                previewContainer.appendChild(fileNameDisplay);
+                            };
+                
+                            reader.readAsDataURL(file);
+                        } else {
+                            // No file selected => remove classes
+                            previewContainer.className = '';
+                            previewContainer.innerHTML = '';
+                        }
+                    });
+                </script>                
             </div>
         </div>  
     </div>

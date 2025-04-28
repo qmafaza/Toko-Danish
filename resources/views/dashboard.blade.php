@@ -112,7 +112,7 @@
                                     </h3>
                                     <p class="mt-1 text-sm text-gray-500">{{ Str::of($product->description)->limit(30) }}</p>
                                 </div>
-                                <p class="text-sm font-medium text-gray-900">Rp {{ $product->price }}</p>
+                                <p class="text-sm font-medium text-gray-900">Rp {{ number_format($product->price) }}</p>
                             </div>
                         </div>
                     @endforeach
