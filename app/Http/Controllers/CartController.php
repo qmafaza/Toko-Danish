@@ -32,18 +32,59 @@ class CartController extends Controller
             ['user_id' => $userId],
         );
 
-        $cart_item = CartItem::create([
-            'cart_id'    => $cart->id,
-            'product_id' => $productId,
-            'quantity'   => 1,
-        ]);
+        $cartItem = CartItem::where('cart_id', $cart->id)
+                            ->where('product_id', $productId)
+                            ->first();
+
+        if ($cartItem) {
+            $cartItem->quantity++;
+            $cartItem->save();
+        } else {
+            $cartItem = CartItem::create([
+                'cart_id'    => $cart->id,
+                'product_id' => $productId,
+                'quantity'   => 1,
+            ]);
+        }
 
         $cart->total_item++;
-        $cart->total_price += $cart_item->product->price;
+        $cart->total_price += $cartItem->product->price;
         $cart->save();
 
         return redirect()->route('cart.index')->with('success', 'Product added to cart!');
     }
+
+    public function update_quantity(Request $request, $id)
+    {
+        $cartItem = CartItem::findOrFail($id);
+        $cart = Cart::firstOrCreate(
+            ['user_id' => Auth::user()->id],
+        );
+
+        if ($request->action === 'increment') {
+            $cartItem->quantity++;
+            $cartItem->save();
+            
+            $cart->total_item++;
+            $cart->total_price += $cartItem->product->price;
+            $cart->save();
+        } elseif ($request->action === 'decrement') {
+            if ($cartItem->quantity <= 1) {
+                $cartItem->delete();
+            } else {
+                $cartItem->quantity--;
+                $cartItem->save();
+            }
+
+            $cart->total_item--;
+            $cart->total_price -= $cartItem->product->price;
+            $cart->save();
+        }
+
+        return back();
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

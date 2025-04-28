@@ -81,7 +81,7 @@ class SellerController extends Controller
          $product->price = $request->price;
          $product->stock = $request->stock;
          $product->description = $request->description;
-         $product->image = '/image/cpu' . $imagePath;
+         $product->image = '/image' . $imagePath;
          $product->save();
  
          // Redirect atau response
