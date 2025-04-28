@@ -54,37 +54,45 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Product added to cart!');
     }
 
-    public function update_quantity(Request $request, $id)
-    {
-        $cartItem = CartItem::findOrFail($id);
-        $cart = Cart::firstOrCreate(
-            ['user_id' => Auth::user()->id],
-        );
+    public function update_quantity(Request $request, $id)  
+    {  
+        // Find the cart item or fail if not found  
+        $cartItem = CartItem::findOrFail($id);  
+        // Get or create the cart for the authenticated user  
+        $cart = Cart::firstOrCreate(['user_id' => Auth::user()->id]);  
+        
+        // Action to either increment or decrement the quantity  
+        if ($request->action === 'increment') {  
+            // Increment quantity  
+            $cartItem->quantity++;  
+            $cartItem->save();  
 
-        if ($request->action === 'increment') {
-            $cartItem->quantity++;
-            $cartItem->save();
-            
-            $cart->total_item++;
-            $cart->total_price += $cartItem->product->price;
-            $cart->save();
-        } elseif ($request->action === 'decrement') {
-            if ($cartItem->quantity <= 1) {
-                $cartItem->delete();
-            } else {
-                $cartItem->quantity--;
-                $cartItem->save();
-            }
+            // Update total items and price in the cart  
+            $cart->total_item++;  
+            $cart->total_price += $cartItem->product->price;  
+            $cart->save();  
+        } elseif ($request->action === 'decrement') {  
+            if ($cartItem->quantity > 1) {  
+                // Decrement only if quantity is greater than 1  
+                $cartItem->quantity--;  
+                $cartItem->save();  
 
-            $cart->total_item--;
-            $cart->total_price -= $cartItem->product->price;
-            $cart->save();
-        }
+                // Update total items and price in the cart  
+                $cart->total_item--;  
+                $cart->total_price -= $cartItem->product->price;  
+                $cart->save();  
+            } else {  
+                // If the quantity is 1, delete the cart item  
+                $cart->total_item--; // Adjust the total items in the cart before deleting  
+                $cart->total_price -= $cartItem->product->price; // Adjust the price before deleting  
+                $cart->save();  
 
-        return back();
-    }
+                $cartItem->delete();  
+            }  
+        }  
 
-
+        return back();  
+    }  
 
     /**
      * Store a newly created resource in storage.
@@ -121,24 +129,30 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $cart = Cart::firstOrCreate(
-            ['user_id' => Auth::user()->id],
-        );
+    public function destroy(string $id)  
+    {  
+        $cart = Cart::firstOrCreate(['user_id' => Auth::user()->id]);  
+        
+        $cart_item = CartItem::with('product')->find($id);  
 
-        $cart_item = CartItem::find($id);
+        if (!$cart_item) {  
+            return redirect()->back()->with('error', 'Item not found.');  
+        }  
 
-        if (!$cart_item) {
-            return redirect()->back()->with('error', 'Item not found.');
-        }
+        $quantity = $cart_item->quantity; // Assuming this is the quantity of the cart item  
+        $price = $cart_item->product->price; // Get the associated product's price  
 
-        $cart_item->delete();
+        if (is_null($price) || is_null($quantity)) {  
+            return redirect()->back()->with('error', 'Item has no valid price or quantity.');  
+        }  
 
-        $cart->total_item--;
-        $cart->total_price -= $cart_item->product->price;
-        $cart->save();
+        $cart->total_item -= $quantity; // Adjust total item count  
+        $cart->total_price -= $price * $quantity; // Adjust total price  
+        $cart->save(); // Save updated cart  
 
-        return redirect()->back()->with('success', 'Item removed from cart.');
-    }
+        // Delete the cart item  
+        $cart_item->delete(); // Remove cart item from database  
+
+        return redirect()->back()->with('success', 'Item removed from cart.');  
+    }  
 }
