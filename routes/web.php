@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\PaymentController;
 use App\Models\Category;
 
 // Route::get('/', function () {
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/{id}', [CartController::class, 'create'])->name('cart.add');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::post('/cart/update-quantity/{id}', [CartController::class, 'update_quantity'])->name('cart.update-quantity');
+
+    Route::get('/cart/payment', [PaymentController::class, 'index'])->name('cart.checkout');
 
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');

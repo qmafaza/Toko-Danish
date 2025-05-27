@@ -37,37 +37,37 @@
                                             quantity:</label>
 
                                         <div class="flex items-center justify-between md:order-3 md:justify-end">
-                                            <div class="flex items-center">  
-                                                <form action="{{ route('cart.update-quantity', $cart_item->id) }}" method="POST" class="flex items-center space-x-2">  
-                                                    @csrf  
-                                                    <input type="hidden" name="action" id="action-{{ $cart_item->id }}" value="">  
-                                            
-                                                    <!-- Decrement Button -->  
-                                                    <button type="submit"   
-                                                        onclick="document.getElementById('action-{{ $cart_item->id }}').value='decrement';   
-                                                                 if ({{ $cart_item->quantity }} === 1) {   
-                                                                     return confirm('Are you sure you want to remove this item?') ? true : false;   
-                                                                 }"  
-                                                        class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">  
-                                                        <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">  
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />  
-                                                        </svg>  
-                                                    </button>  
-                                            
-                                                    <!-- Quantity Display -->  
-                                                    <input type="text" value="{{ $cart_item->quantity }}" readonly  
-                                                        class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white" />  
-                                            
-                                                    <!-- Increment Button -->  
-                                                    <button type="submit"   
-                                                        onclick="document.getElementById('action-{{ $cart_item->id }}').value='increment'"  
-                                                        class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">  
-                                                        <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">  
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />  
-                                                        </svg>  
-                                                    </button>  
-                                                </form>  
-                                            </div>  
+                                            <div class="flex items-center">
+                                                <form action="{{ route('cart.update-quantity', $cart_item->id) }}" method="POST" class="flex items-center space-x-2">
+                                                    @csrf
+                                                    <input type="hidden" name="action" id="action-{{ $cart_item->id }}" value="">
+
+                                                    <!-- Decrement Button -->
+                                                    <button type="submit"
+                                                        onclick="document.getElementById('action-{{ $cart_item->id }}').value='decrement';
+                                                                 if ({{ $cart_item->quantity }} === 1) {
+                                                                     return confirm('Are you sure you want to remove this item?') ? true : false;
+                                                                 }"
+                                                        class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
+                                                        <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                                        </svg>
+                                                    </button>
+
+                                                    <!-- Quantity Display -->
+                                                    <input type="text" value="{{ $cart_item->quantity }}" readonly
+                                                        class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white" />
+
+                                                    <!-- Increment Button -->
+                                                    <button type="submit"
+                                                        onclick="document.getElementById('action-{{ $cart_item->id }}').value='increment'"
+                                                        class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
+                                                        <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            </div>
                                             <div class="text-end md:order-4 md:w-32">
                                                 <p class="text-base font-bold text-gray-900 dark:text-white">
                                                     Rp {{ number_format($cart_item->product->price, 2) }}</p>
@@ -135,7 +135,7 @@
                                     </dl>
                                 </div>
 
-                                <a href="#"
+                                <a href="{{ route('cart.checkout') }}" title=""
                                     class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed
                                     to Checkout</a>
 
