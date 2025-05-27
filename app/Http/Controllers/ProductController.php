@@ -40,30 +40,30 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|string',
-            'product_image' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:2048', // max 2MB
+            'product_image' => 'nullable|image', // max 2MB
         ]);
 
         $category = Category::find($validated['category_id']);
         $categoryName = strtolower($category->name);
     
         if ($request->hasFile('product_image')) {
-        $image = $request->file('product_image');
-        $imageName = time() . '_' . $image->getClientOriginalName(); // Safe unique filename
-        
-        // Create a folder for the category inside public/image
-        $folderPath = public_path("image/{$categoryName}");
-        
-        // Make sure the folder exists
-        if (!file_exists($folderPath)) {
-            mkdir($folderPath, 0777, true); // Create directory if not exists
+            $image = $request->file('product_image');
+            $imageName = time() . '_' . $image->getClientOriginalName(); // Safe unique filename
+            
+            // Create a folder for the category inside public/image
+            $folderPath = public_path("image/{$categoryName}");
+            
+            // Make sure the folder exists
+            if (!file_exists($folderPath)) {
+                mkdir($folderPath, 0777, true); // Create directory if not exists
+            }
+
+            // Move the image to the category-specific folder
+            $image->move($folderPath, $imageName); 
+
+            // Store the image name relative to the public directory
+            $validated['image'] = "{$categoryName}/" . $imageName;
         }
-
-        // Move the image to the category-specific folder
-        $image->move($folderPath, $imageName); 
-
-        // Store the image name relative to the public directory
-        $validated['image'] = "image/{$categoryName}/" . $imageName;
-    }
 
         $seller = Seller::firstOrCreate(
             ['user_id' => Auth::user()->id],

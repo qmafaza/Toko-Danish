@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 use App\Models\Seller;
@@ -47,45 +48,55 @@ class SellerController extends Controller
 
      public function create_product(Request $request)
      {
-         // Validasi data input
-         $request->validate([
-             'name' => 'required|string|max:255',
-             'category_id' => 'required',
-             'price' => 'required|numeric',
-             'stock' => 'required|integer',
-             'description' => 'nullable|string',
-             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-         ]);
- 
-         // Ambil user yang login
-         $user = Auth::user();
- 
-         // Cari seller_id berdasarkan user_id
-         $seller = Seller::where('user_id', $user->id)->first();
- 
-         if (!$seller) {
-             return redirect(route("seller.product"))->with('error', 'Seller not found for this user.');
-         }
- 
-         // Upload image kalau ada
-         $imagePath = null;
-         if ($request->hasFile('image')) {
-             $imagePath = $request->file('image')->store('images', 'public');
-         }
- 
-         // Simpan produk ke database
-         $product = new Product();
-         $product->seller_id = $seller->id; // <- ini tambahan seller_id
-         $product->name = $request->name;
-         $product->category_id = $request->category_id;
-         $product->price = $request->price;
-         $product->stock = $request->stock;
-         $product->description = $request->description;
-         $product->image = '/image' . $imagePath;
-         $product->save();
- 
-         // Redirect atau response
-         return redirect(route("seller.product"))->with('success', 'Product successfully created!');
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'description' => 'nullable|string',
+            'product_image' => 'nullable|image', // max 2MB
+        ]);
+
+        $category = Category::find($validated['category_id']);
+        $categoryName = strtolower($category->name);
+    
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+            $imageName = time() . '_' . $image->getClientOriginalName(); // Safe unique filename
+            
+            // Create a folder for the category inside public/image
+            $folderPath = public_path("image/{$categoryName}");
+            
+            // Make sure the folder exists
+            if (!file_exists($folderPath)) {
+                mkdir($folderPath, 0777, true); // Create directory if not exists
+            }
+
+            // Move the image to the category-specific folder
+            $image->move($folderPath, $imageName); 
+
+            // Store the image name relative to the public directory
+            $validated['image'] = "{$categoryName}/" . $imageName;
+        }
+
+        $seller = Seller::firstOrCreate(
+            ['user_id' => Auth::user()->id],
+        )->id;
+    
+        // 3. Create the product
+        Product::create([
+            'name' => $validated['name'],
+            'category_id' => $validated['category_id'],
+            'price' => $validated['price'],
+            'stock' => $validated['stock'],
+            'description' => $validated['description'] ?? null,
+            'image' => $validated['image'] ?? null, // optional if no image uploaded
+            'seller_id' => $seller, // assuming you have seller authentication
+        ]);
+    
+        // 4. Redirect or return response
+        return redirect()->route('seller.product')
+            ->with('success', 'Product created successfully!');
      }
 
 

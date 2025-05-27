@@ -1447,19 +1447,19 @@
 
                         <div>
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Category
+                              Category
                             </label>
                             <select name="category_id" id="category"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected class="text-gray-400 dark:text-gray-400">Select category</option>
-                                <option value="1">Casing PC</option>    
-                                <option value="2">CPU</option>
-                                <option value="3">GPU</option>
-                                <option value="4">Motherboard</option>
-                                <option value="5">Peripherals</option>
-                                <option value="6">Power Supply</option>
-                                <option value="7">RAM</option>
-                                <option value="8">Storage</option>
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option value="" disabled selected class="text-gray-400 dark:text-gray-400">Select category</option>
+                                <option value="0">Casing PC</option>    
+                                <option value="1">CPU</option>
+                                <option value="2">GPU</option>
+                                <option value="3">Motherboard</option>
+                                <option value="4">Peripherals</option>
+                                <option value="5">Power Supply</option>
+                                <option value="6">RAM</option>
+                                <option value="7">Storage</option>
                             </select>
                         </div>
 
@@ -1505,7 +1505,6 @@
                                         800x400px)</p>
                                 </div>
                                 <input id="dropzone-file" type="file" class="hidden" name="product_image">
-                                
                                 
                             </label>
                         </div>
