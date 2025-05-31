@@ -16,9 +16,19 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $productsQuery = Product::latest();
 
-        return view('product.index', compact('products'));//
+        if(request('query')) {
+            $searchTerm = '%' . request('query') . '%';
+            $productsQuery->where(function($query) use ($searchTerm) {
+                $query->where('name', 'like', $searchTerm)
+                    ->orWhere('description', 'like', $searchTerm);
+            });
+        }
+
+        $products = $productsQuery->get();
+
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -34,55 +44,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,id',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-            'description' => 'nullable|string',
-            'product_image' => 'nullable|image', // max 2MB
-        ]);
-
-        $category = Category::find($validated['category_id']);
-        $categoryName = strtolower($category->name);
-    
-        if ($request->hasFile('product_image')) {
-            $image = $request->file('product_image');
-            $imageName = time() . '_' . $image->getClientOriginalName(); // Safe unique filename
-            
-            // Create a folder for the category inside public/image
-            $folderPath = public_path("image/{$categoryName}");
-            
-            // Make sure the folder exists
-            if (!file_exists($folderPath)) {
-                mkdir($folderPath, 0777, true); // Create directory if not exists
-            }
-
-            // Move the image to the category-specific folder
-            $image->move($folderPath, $imageName); 
-
-            // Store the image name relative to the public directory
-            $validated['image'] = "{$categoryName}/" . $imageName;
-        }
-
-        $seller = Seller::firstOrCreate(
-            ['user_id' => Auth::user()->id],
-        );
-    
-        // 3. Create the product
-        Product::create([
-            'name' => $validated['name'],
-            'category_id' => $validated['category_id'],
-            'price' => $validated['price'],
-            'stock' => $validated['stock'],
-            'description' => $validated['description'] ?? null,
-            'image' => $validated['image'] ?? null, // optional if no image uploaded
-            'seller_id' => $seller, // assuming you have seller authentication
-        ]);
-    
-        // 4. Redirect or return response
-        return redirect()->route('seller.products')
-            ->with('success', 'Product created successfully!');
+        
     }
 
     /**

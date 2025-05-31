@@ -32,6 +32,8 @@
                             type="text"
                             name="query"
                             placeholder="Search products..."
+                            autocomplete="off"
+                            value="{{ request('query') ? request('query') : '' }}"
                             class="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                         >
                         <button
