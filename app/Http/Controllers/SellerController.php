@@ -27,7 +27,9 @@ class SellerController extends Controller
     {
         $seller = DB::table('sellers')->where('user_id', Auth::user()->id)->firstOrFail();
 
-        return view('seller.profile', compact('seller'));
+        $products = Product::where('seller_id', $seller->id)->get();
+
+        return view('seller.profile', compact('seller', 'products'));
     }
 
     public function product()  

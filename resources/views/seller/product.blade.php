@@ -545,13 +545,13 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="p-4">
+                                {{-- <th scope="col" class="p-4">
                                     <div class="flex items-center">
                                         <input id="checkbox-all" type="checkbox"
                                             class="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                         <label for="checkbox-all" class="sr-only">checkbox</label>
                                     </div>
-                                </th>
+                                </th> --}}
                                 <th scope="col" class="p-4">Product</th>
                                 <th scope="col" class="p-4">Category</th>
                                 <th scope="col" class="p-4">Stock</th>
@@ -566,14 +566,14 @@
                         <tbody>
                             @foreach ($products as $product)
                                 <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    <td class="p-4 w-4">
+                                    {{-- <td class="p-4 w-4">
                                         <div class="flex items-center">
                                             <input id="checkbox-table-search-1" type="checkbox"
                                                 onclick="event.stopPropagation()"
                                                 class="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                             <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                         </div>
-                                    </td>
+                                    </td> --}}
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div class="flex items-center mr-3">
@@ -1596,6 +1596,21 @@
             </svg>
             <span class="sr-only">Close menu</span>
         </button>
+
+        {{-- <script>
+            document.addEventListener('DOMContentLoaded', () => {
+            const drawer = document.getElementById('drawer-update-product');
+            const dismissButton = drawer.querySelector('[data-drawer-dismiss]');
+
+            document.addEventListener('click', function(event) {
+                if (drawer.classList.contains('fixed') && !drawer.contains(event.target) && !event.target.closest('[data-drawer-dismiss]')) {
+                // Trigger the close action, e.g., click the dismiss button
+                dismissButton.click();
+                }
+            });
+            });
+        </script> --}}
+
         <div class="grid gap-4 sm:grid-cols-3 sm:gap-6 ">
             <div class="space-y-4 sm:col-span-2 sm:space-y-6">
                 <div>

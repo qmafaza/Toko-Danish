@@ -109,7 +109,7 @@
                                 </div>
                             </div>
 
-                            <a href="#"
+                            <a href="{{ route('product.show', $product->id) }}"
                                 class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white line-clamp-2 overflow-hidden text-ellipsis">
                                 {{ $product->name }}
                             </a>

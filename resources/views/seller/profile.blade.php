@@ -19,7 +19,7 @@
               <svg class="mx-1 h-4 w-4 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7" />
               </svg>
-              <a href="#" class="ms-1 text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white md:ms-2">My account</a>
+              <a href="#" class="ms-1 text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white md:ms-2">My Account</a>
             </div>
           </li>
           <li aria-current="page">
@@ -182,6 +182,72 @@
                   Edit product
           </a>
       </div>
+
+      <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">Produk Toko</h2>
+
+      <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+        @foreach ($products as $product)
+          <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+              <div class="h-56 w-full">
+                  <a href="{{ route('product.show', $product->id) }}">
+                      <img class="mx-auto h-full dark:hidden"
+                          src="/image/{{ $product->image }}" alt="" />
+                      {{-- <img class="mx-auto hidden h-full dark:block"
+                          src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" /> --}}
+                  </a>
+              </div>
+              <div class="pt-6">
+  
+                  <a href="{{ route('product.show', $product->id) }}"
+                      class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white line-clamp-2 overflow-hidden text-ellipsis">
+                      {{ $product->name }}
+                  </a>
+  
+                  <div class="mt-2 flex items-center gap-2">
+                      <div class="flex items-center">
+                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                          </svg>
+  
+                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                          </svg>
+  
+                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                          </svg>
+  
+                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                          </svg>
+  
+                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                          </svg>
+                      </div>
+  
+                      <p class="text-sm font-medium text-gray-900 dark:text-white">5.0</p>
+                      <p class="text-sm font-medium text-gray-500 dark:text-gray-400">(455)</p>
+                  </div>
+  
+                  <div class="mt-4 flex items-center justify-between gap-4">
+                      <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white">Rp {{ number_format($product->price) }}</p>
+                  </div>
+              </div>
+          </div>
+        @endforeach
+      </div>
+
       <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 md:p-8">
         <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Order History</h3>
         <div class="flex flex-wrap items-center gap-y-4 border-b border-gray-200 pb-4 dark:border-gray-700 md:pb-5">
