@@ -1,4 +1,5 @@
-<section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+<x-app-layout>
+  <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
     @yield('content')
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -461,3 +462,6 @@
       </div>
     </form>
   </section>
+</x-app-layout>
+
+    

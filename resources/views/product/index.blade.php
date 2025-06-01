@@ -201,7 +201,7 @@
             </div>
         </div>
         <!-- Filter modal -->
-        <form action="#" method="get" id="filterModal" tabindex="-1" aria-hidden="true"
+        <form action="" method="get" id="filterModal" tabindex="-1" aria-hidden="true"
             class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
             <div class="relative h-full w-full max-w-xl md:h-auto">
                 <!-- Modal content -->
@@ -225,18 +225,42 @@
                         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                             <ul class="-mb-px flex flex-wrap text-center text-sm font-medium" id="myTab"
                                 data-tabs-toggle="#myTabContent" role="tablist">
-                                <li class="mr-1" role="presentation">
+                                {{-- <li class="mr-1" role="presentation">
                                     <button class="inline-block pb-2 pr-1" id="brand-tab" data-tabs-target="#brand"
                                         type="button" role="tab" aria-controls="profile"
                                         aria-selected="false">Brand</button>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <div id="myTabContent">
-                            <div class="grid grid-cols-2 gap-4 md:grid-cols-3" id="brand" role="tabpanel"
-                                aria-labelledby="brand-tab">
-                                <div class="space-y-2">
+                            <div class="space-y-2">
+                                <h5 class="text-lg font-medium text-black dark:text-white">Select Category</h5>
+                                <div class="grid grid-cols-2 gap-4 md:grid-cols-3" id="brand" role="tabpanel" aria-labelledby="brand-tab">
 
+                                @if (request('query'))
+                                    <input id="" hidden name="query" value="{{ request('query') }}" />
+                                @endif
+
+                                @foreach ($categories as $category)
+                                    @php
+                                        $checked = in_array($category->id, request('categories', [])) ? 'checked' : '';
+                                    @endphp
+
+                                    <div class="flex items-center">
+                                        <input id="" type="checkbox" name="categories[]" value="{{ $category->id }}" {{ $checked }}
+                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+
+                                        <label for=""
+                                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> {{ $category->name }}
+                                        </label>
+                                    </div>
+
+                                @endforeach
+                                                            
+                                </div>
+    
+                                <div class="space-y-2">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -244,9 +268,9 @@
 
                     <!-- Modal footer -->
                     <div class="flex items-center space-x-4 rounded-b p-4 dark:border-gray-600 md:p-5">
-                        <button type="submit"
-                            class="rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-700 dark:hover:bg-primary-800 dark:focus:ring-primary-800">Show
-                            50 results</button>
+                        <button type="submit" class="rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-700 dark:hover:bg-primary-800 dark:focus:ring-primary-800">Show results</button>
+
+                        <button type="submit" name="reset" value="true" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Reset</button>
                     </div>
                 </div>
             </div>

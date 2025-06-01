@@ -16,9 +16,14 @@ class ProductController extends Controller
      */
     public function index()
     {
+        if (request('reset') == 'true') {
+            return redirect()->route('product.index');
+        }
+
+        // apply filters
         $productsQuery = Product::latest();
 
-        if(request('query')) {
+        if (request('query')) {
             $searchTerm = '%' . request('query') . '%';
             $productsQuery->where(function($query) use ($searchTerm) {
                 $query->where('name', 'like', $searchTerm)
@@ -26,9 +31,16 @@ class ProductController extends Controller
             });
         }
 
-        $products = $productsQuery->get();
+        if (request('categories')) {
+            $categories = request('categories');
+            $productsQuery->whereIn('category_id', $categories);
+        }
 
-        return view('product.index', compact('products'));
+        $products = $productsQuery->get();
+        $categories = Category::all();
+
+        // pass current filters back to view if needed
+        return view('product.index', compact('products', 'categories'));
     }
 
     /**
