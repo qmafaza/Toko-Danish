@@ -32,14 +32,14 @@
 
                     <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         @foreach ($categories as $category)
-                            <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <a href="product?categories%5B%5D={{$category->id}}" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                                 <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v5m-3 0h6M4 11h16M5 15h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1Z"></path>
                                 </svg>
                                 <span class="text-sm font-medium text-gray-900 dark:text-white">{{ $category->name }}</span>
                             </a>
                         @endforeach
-                    {{-- <a href="#" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    {{-- <a href="" class="flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <svg class="me-2 h-4 w-4 shrink-0 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.872 9.687 20 6.56 17.44 4 4 17.44 6.56 20 16.873 9.687Zm0 0-2.56-2.56M6 7v2m0 0v2m0-2H4m2 0h2m7 7v2m0 0v2m0-2h-2m2 0h2M8 4h.01v.01H8V4Zm2 2h.01v.01H10V6Zm2-2h.01v.01H12V4Zm8 8h.01v.01H20V12Zm-2 2h.01v.01H18V14Zm2 2h.01v.01H20V16Z"></path>
                         </svg>
@@ -91,221 +91,134 @@
                     </div>
                 </section>
 
-    {{-- ini buat flex pertama --}}
-        <div class="bg-white">
-            <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Products That May Attract You</h2>
-                <div class="mt-6 flex gap-x-6 overflow-x-auto">
-                    <!-- Product 1 -->
-                    @foreach ($products as $product)
-                        <div class="group relative min-w-[200px]">
-                            <img src="image/{{ $product->image }}"
-                                alt="Front of men's Basic Tee in black."
-                                class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                            <div class="mt-4 flex justify-between">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        <a href="{{ route('product.show', $product->id) }}">
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            {{ $product->name }}
-                                        </a>
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">{{ Str::of($product->description)->limit(30) }}</p>
-                                </div>
-                                <p class="text-sm font-medium text-gray-900">Rp {{ number_format($product->price) }}</p>
-                            </div>
-                        </div>
-                    @endforeach
+                <div class="mb-12"></div>
 
-                    {{-- <!-- Product 2 -->
-                    <div class="group relative min-w-[200px]">
-                        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                            alt="Front of men's Basic Tee in black."
-                            class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-sm text-gray-700">
-                                    <a href="#">
-                                        <span aria-hidden="true" class="absolute inset-0"></span>
-                                        Basic Tee
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500">Black</p>
-                            </div>
-                            <p class="text-sm font-medium text-gray-900">$35</p>
-                        </div>
-                    </div>
+{{-- ini buat flex pertama --}}
+<h2 class="text-2xl font-bold tracking-tight text-gray-900">Products That May Attract You</h2>
+<div class="mb-10"></div>
+<div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-4 xl:grid-cols-4">
+    @php
+        // Randomize produk dan ambil 12 item pertama (untuk tampilan 4x3)
+        $randomProducts = $products->shuffle()->take(12);
+    @endphp
+    
+    @foreach ($randomProducts as $product)
+        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div class="h-56 w-full">
+                <a href="{{ route('product.show', $product->id) }}">
+                    <img class="mx-auto h-full dark:hidden"
+                        src="/image/{{ $product->image }}" alt="{{ $product->name }}" />
+                </a>
+            </div>
+            <div class="pt-6">
+                <div class="mb-4 flex items-center justify-between gap-4">
+                    <span class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                        Up to 35% off 
+                    </span>
 
-                    <!-- More products... -->
-                    <div class="group relative">
-                        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                            alt="Front of men&#039;s Basic Tee in black."
-                            class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-sm text-gray-700">
-                                    <a href="#">
-                                        <span aria-hidden="true" class="absolute inset-0"></span>
-                                        Basic Tee
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500">Black</p>
-                            </div>
-                            <p class="text-sm font-medium text-gray-900">$35</p>
+                    <div class="flex items-center justify-end gap-1">
+                        <!-- Tombol quick look -->
+                        <button type="button" data-tooltip-target="tooltip-quick-look-{{ $product->id }}"
+                            class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span class="sr-only"> Quick look </span>
+                            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-width="2"
+                                    d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
+                                <path stroke="currentColor" stroke-width="2"
+                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                        </button>
+                        <div id="tooltip-quick-look-{{ $product->id }}" role="tooltip"
+                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+                            data-popper-placement="top">
+                            Quick look
+                            <div class="tooltip-arrow" data-popper-arrow=""></div>
                         </div>
-                    </div>
 
-                    <!-- More products... -->
-                    <div class="group relative">
-                        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                            alt="Front of men&#039;s Basic Tee in black."
-                            class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-sm text-gray-700">
-                                    <a href="#">
-                                        <span aria-hidden="true" class="absolute inset-0"></span>
-                                        Basic Tee
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500">Black</p>
-                            </div>
-                            <p class="text-sm font-medium text-gray-900">$35</p>
+                        <!-- Tombol favorites -->
+                        <button type="button" data-tooltip-target="tooltip-add-to-favorites-{{ $product->id }}"
+                            class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span class="sr-only"> Add to Favorites </span>
+                            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
+                            </svg>
+                        </button>
+                        <div id="tooltip-add-to-favorites-{{ $product->id }}" role="tooltip"
+                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+                            data-popper-placement="top">
+                            Add to favorites
+                            <div class="tooltip-arrow" data-popper-arrow=""></div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- More products... -->
-                    <div class="group relative">
-                        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                            alt="Front of men&#039;s Basic Tee in black."
-                            class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-sm text-gray-700">
-                                    <a href="#">
-                                        <span aria-hidden="true" class="absolute inset-0"></span>
-                                        Basic Tee
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500">Black</p>
-                            </div>
-                            <p class="text-sm font-medium text-gray-900">$35</p>
-                        </div>
-                    </div> --}}
+                <a href="{{ route('product.show', $product->id) }}"
+                    class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white line-clamp-2 overflow-hidden text-ellipsis">
+                    {{ $product->name }}
+                </a>
 
+                <div class="mt-2 flex items-center gap-2">
+                    <div class="flex items-center">
+                        <!-- Rating stars -->
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <!-- ... (stars lainnya) ... -->
+                    </div>
+
+                    <p class="text-sm font-medium text-gray-900 dark:text-white">5.0</p>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">(455)</p>
+                </div>
+
+                <ul class="mt-2 flex items-center gap-4">
+                    <li class="flex items-center gap-2">
+                        <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
+                        </svg>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Fast Delivery</p>
+                    </li>
+
+                    <li class="flex items-center gap-2">
+                        <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                d="M8 7V6c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1h-1M3 18v-7c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                        </svg>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Best Price</p>
+                    </li>
+                </ul>
+
+                <div class="mt-4 flex items-center justify-between gap-4">
+                    <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white">Rp {{ number_format($product->price) }}</p>
+                    <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4 sm:mt-0 flex items-center justify-center">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                        <button type="submit"
+                            class="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                            </svg>
+                            Add to cart
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
+    @endforeach
+</div>
 
-
-
-
-
-        {{-- ini buat flex kedua --}}
-                <div class="bg-white">
-                    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-                        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
-                        <div class="mt-6 flex gap-x-6 overflow-x-auto">
-                            <!-- Product 1 -->
-                            @foreach ($products as $product)
-                                <div class="group relative min-w-[200px]">
-                                    <img src="image/{{ $product->image }}"
-                                        alt="Front of men's Basic Tee in black."
-                                        class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                                    <div class="mt-4 flex justify-between">
-                                        <div>
-                                            <h3 class="text-sm text-gray-700">
-                                                <a href="{{ route('product.show', $product->id) }}">
-                                                    <span aria-hidden="true" class="absolute inset-0"></span>
-                                                    {{ $product->name }}
-                                                </a>
-                                            </h3>
-                                            <p class="mt-1 text-sm text-gray-500">{{ Str::of($product->description)->limit(30) }}</p>
-                                        </div>
-                                        <p class="text-sm font-medium text-gray-900">Rp {{ $product->price }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
-
-                            <!-- Product 2 -->
-                            {{-- <div class="group relative min-w-[200px]">
-                                <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                                    alt="Front of men's Basic Tee in black."
-                                    class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                                <div class="mt-4 flex justify-between">
-                                    <div>
-                                        <h3 class="text-sm text-gray-700">
-                                            <a href="#">
-                                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                                Basic Tee
-                                            </a>
-                                        </h3>
-                                        <p class="mt-1 text-sm text-gray-500">Black</p>
-                                    </div>
-                                    <p class="text-sm font-medium text-gray-900">$35</p>
-                                </div>
-                            </div> --}}
-
-                            <!-- More products... -->
-                            {{-- <div class="group relative">
-                                <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                                    alt="Front of men&#039;s Basic Tee in black."
-                                    class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                                <div class="mt-4 flex justify-between">
-                                    <div>
-                                        <h3 class="text-sm text-gray-700">
-                                            <a href="#">
-                                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                                Basic Tee
-                                            </a>
-                                        </h3>
-                                        <p class="mt-1 text-sm text-gray-500">Black</p>
-                                    </div>
-                                    <p class="text-sm font-medium text-gray-900">$35</p>
-                                </div>
-                            </div> --}}
-
-                            <!-- More products... -->
-                            {{-- <div class="group relative">
-                                <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                                    alt="Front of men&#039;s Basic Tee in black."
-                                    class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                                <div class="mt-4 flex justify-between">
-                                    <div>
-                                        <h3 class="text-sm text-gray-700">
-                                            <a href="#">
-                                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                                Basic Tee
-                                            </a>
-                                        </h3>
-                                        <p class="mt-1 text-sm text-gray-500">Black</p>
-                                    </div>
-                                    <p class="text-sm font-medium text-gray-900">$35</p>
-                                </div>
-                            </div> --}}
-
-                            <!-- More products... -->
-                            {{-- <div class="group relative">
-                                <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                                    alt="Front of men&#039;s Basic Tee in black."
-                                    class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                                <div class="mt-4 flex justify-between">
-                                    <div>
-                                        <h3 class="text-sm text-gray-700">
-                                            <a href="#">
-                                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                                Basic Tee
-                                            </a>
-                                        </h3>
-                                        <p class="mt-1 text-sm text-gray-500">Black</p>
-                                    </div>
-                                    <p class="text-sm font-medium text-gray-900">$35</p>
-                                </div>
-                            </div> --}}
-
-                        </div>
-                    </div>
-                </div>
     </body>
     </html>
 
