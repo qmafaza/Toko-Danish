@@ -424,34 +424,20 @@
         </div>
 
         <div class="mt-6 w-full space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md">
-          <div class="flow-root">
-            <div class="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
-              <dl class="flex items-center justify-between gap-4 py-3">
+            <dl class="flex items-center justify-between gap-4 py-3">
                 <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Subtotal</dt>
-                <dd class="text-base font-medium text-gray-900 dark:text-white">$8,094.00</dd>
-              </dl>
+                <dd class="text-base font-medium text-gray-900 dark:text-white">${{ number_format($subtotal, 2) }}</dd>
+            </dl>
 
-              <dl class="flex items-center justify-between gap-4 py-3">
-                <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Savings</dt>
-                <dd class="text-base font-medium text-green-500">0</dd>
-              </dl>
-
-              <dl class="flex items-center justify-between gap-4 py-3">
-                <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Store Pickup</dt>
-                <dd class="text-base font-medium text-gray-900 dark:text-white">$99</dd>
-              </dl>
-
-              <dl class="flex items-center justify-between gap-4 py-3">
+            <dl class="flex items-center justify-between gap-4 py-3">
                 <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Tax</dt>
-                <dd class="text-base font-medium text-gray-900 dark:text-white">$199</dd>
-              </dl>
+                <dd class="text-base font-medium text-gray-900 dark:text-white">${{ number_format($tax, 2) }}</dd>
+            </dl>
 
-              <dl class="flex items-center justify-between gap-4 py-3">
+            <dl class="flex items-center justify-between gap-4 py-3">
                 <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
-                <dd class="text-base font-bold text-gray-900 dark:text-white">$8,392.00</dd>
-              </dl>
-            </div>
-          </div>
+                <dd class="text-base font-bold text-gray-900 dark:text-white">${{ number_format($total, 2) }}</dd>
+            </dl>
 
           <div class="space-y-3">
             <button type="submit" class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed to Payment</button>
@@ -464,4 +450,4 @@
   </section>
 </x-app-layout>
 
-    
+
