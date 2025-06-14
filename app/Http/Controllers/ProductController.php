@@ -100,4 +100,5 @@ class ProductController extends Controller
 
         return redirect()->route('seller.product')->with('success', 'Product deleted successfully.');
     }
+    
 }
