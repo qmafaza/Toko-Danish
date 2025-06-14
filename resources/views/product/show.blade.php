@@ -19,144 +19,85 @@
     </head>
 
     <body>
-      <!-- Detail Produk -->
+
+    <!-- Detail Produk -->
     <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
-    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
-      <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-        <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-        <img class="w-full block dark:hidden" src="/image/{{ $product->image }}" alt="{{ $product->name }}"/>
-          <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
-        </div>
-
-        <div class="mt-6 sm:mt-8 lg:mt-0">
-          <h1
-            class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
-          >
-            {{ $product->name }}
-          </h1>
-          <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
-            <p
-              class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"
-            >
-              Rp {{ number_format($product->price) }}
-            </p>
-
-            <div class="flex items-center gap-2 mt-2 sm:mt-0">
-              <div class="flex items-center gap-1">
-                <svg
-                  class="w-4 h-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                  />
-                </svg>
-                <svg
-                  class="w-4 h-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                  />
-                </svg>
-                <svg
-                  class="w-4 h-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                  />
-                </svg>
-                <svg
-                  class="w-4 h-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                  />
-                </svg>
-                <svg
-                  class="w-4 h-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                  />
-                </svg>
-              </div>
-              <p
-                class="text-sm font-medium leading-none text-gray-500 dark:text-gray-400"
-              >
-                (5.0)
-              </p>
-              <a
-                href="#"
-                class="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white"
-              >
-                345 Reviews
-              </a>
-            </div>
+      <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+          <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+            <img class="w-full block dark:hidden" src="/image/{{ $product->image }}" alt="{{ $product->name }}"/>
+            <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
           </div>
-            <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
-                <form action="{{ route('cart.add', $product->id) }}" method="POST"
-                    class="mt-4 sm:mt-0 flex items-center justify-center">
-                    @csrf
 
-                    <!-- Input hidden untuk product_id -->
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+          <div class="mt-6 sm:mt-8 lg:mt-0">
+            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+              {{ $product->name }}
+            </h1>
+            
+            <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+              <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white">
+                Rp {{ number_format($product->price) }}
+              </p>
 
-                    <button type="submit" title="Add to Cart"
-                        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center">
-                        <svg class="w-5 h-5 -ms-2 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
-                        </svg>
-                        Add to cart
-                    </button>
-                </form>
+              @php
+                $averageRating = $product->ratings->avg('rating');
+                $ratingCount = $product->ratings->count();
+                $fullStars = floor($averageRating);
+                $hasHalfStar = $averageRating - $fullStars >= 0.5;
+              @endphp
+              
+              <div class="flex items-center gap-2 mt-2 sm:mt-0">
+                <div class="flex items-center gap-1">
+                  @for($i = 1; $i <= 5; $i++)
+                    @if($i <= $fullStars)
+                      <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
+                      </svg>
+                    @elseif($i == $fullStars + 1 && $hasHalfStar)
+                      <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
+                      </svg>
+                    @else
+                      <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
+                      </svg>
+                    @endif
+                  @endfor
+                </div>
+                <p class="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
+                  ({{ number_format($averageRating, 1) }})
+                </p>
+                <a href="#reviews" class="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white">
+                  {{ $ratingCount }} Review{{ $ratingCount != 1 ? 's' : '' }}
+                </a>
+              </div>
             </div>
 
+            <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
+              <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4 sm:mt-0 flex items-center justify-center">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <button type="submit" title="Add to Cart"
+                  class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center">
+                  <svg class="w-5 h-5 -ms-2 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                  </svg>
+                  Add to cart
+                </button>
+              </form>
+            </div>
 
+            <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
-
-
-
-          <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
-
-          <p class="mb-6 text-gray-500 dark:text-gray-400">
-            {{ $product->description }}
-          </p>
-          
+            <p class="mb-6 text-gray-500 dark:text-gray-400">
+              {{ $product->description }}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
 <!-- Bagian review -->
 <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
@@ -392,183 +333,58 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-  <!-- Ini bagian barang yang bisa dicek oleh user -->
-<div class="hidden xl:mt-8 xl:block">
-                            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">People also bought</h3>
-                            <div class="mt-6 grid grid-cols-3 gap-4 sm:mt-8">
-                                <div
-                                    class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                                    <a href="#" class="overflow-hidden rounded">
-                                        <img class="mx-auto h-44 w-44 dark:hidden"
-                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-                                            alt="imac image" />
-                                        <img class="mx-auto hidden h-44 w-44 dark:block"
-                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
-                                            alt="imac image" />
-                                    </a>
-                                    <div>
-                                        <a href="#"
-                                            class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">iMac
-                                            27”</a>
-                                        <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">This
-                                            generation
-                                            has some improvements, including a longer continuous battery life.</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-lg font-bold text-gray-900 dark:text-white">
-                                            <span class="line-through"> $399,99 </span>
-                                        </p>
-                                        <p class="text-lg font-bold leading-tight text-red-600 dark:text-red-500">$299
-                                        </p>
-                                    </div>
-                                    <div class="mt-6 flex items-center gap-2.5">
-                                        <button data-tooltip-target="favourites-tooltip-1" type="button"
-                                            class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
-                                            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                        <div id="favourites-tooltip-1" role="tooltip"
-                                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                                            Add to favourites
-                                            <div class="tooltip-arrow" data-popper-arrow></div>
-                                        </div>
-                                        <button type="button"
-                                            class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                            <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7h-1M8 7h-.688M13 5v4m-2-2h4" />
-                                            </svg>
-                                            Add to cart
-                                        </button>
-                                    </div>
-                                </div>
-                                <div
-                                    class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                                    <a href="#" class="overflow-hidden rounded">
-                                        <img class="mx-auto h-44 w-44 dark:hidden"
-                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-light.svg"
-                                            alt="imac image" />
-                                        <img class="mx-auto hidden h-44 w-44 dark:block"
-                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-dark.svg"
-                                            alt="imac image" />
-                                    </a>
-                                    <div>
-                                        <a href="#"
-                                            class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">Playstation
-                                            5</a>
-                                        <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">This
-                                            generation
-                                            has some improvements, including a longer continuous battery life.</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-lg font-bold text-gray-900 dark:text-white">
-                                            <span class="line-through"> $799,99 </span>
-                                        </p>
-                                        <p class="text-lg font-bold leading-tight text-red-600 dark:text-red-500">$499
-                                        </p>
-                                    </div>
-                                    <div class="mt-6 flex items-center gap-2.5">
-                                        <button data-tooltip-target="favourites-tooltip-2" type="button"
-                                            class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
-                                            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                        <div id="favourites-tooltip-2" role="tooltip"
-                                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                                            Add to favourites
-                                            <div class="tooltip-arrow" data-popper-arrow></div>
-                                        </div>
-                                        <button type="button"
-                                            class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                            <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7h-1M8 7h-.688M13 5v4m-2-2h4" />
-                                            </svg>
-                                            Add to cart
-                                        </button>
-                                    </div>
-                                </div>
-                                <div
-                                    class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                                    <a href="#" class="overflow-hidden rounded">
-                                        <img class="mx-auto h-44 w-44 dark:hidden"
-                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-light.svg"
-                                            alt="imac image" />
-                                        <img class="mx-auto hidden h-44 w-44 dark:block"
-                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-dark.svg"
-                                            alt="imac image" />
-                                    </a>
-                                    <div>
-                                        <a href="#"
-                                            class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">Apple
-                                            Watch Series 8</a>
-                                        <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">This
-                                            generation
-                                            has some improvements, including a longer continuous battery life.</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-lg font-bold text-gray-900 dark:text-white">
-                                            <span class="line-through"> $1799,99 </span>
-                                        </p>
-                                        <p class="text-lg font-bold leading-tight text-red-600 dark:text-red-500">$1199
-                                        </p>
-                                    </div>
-                                    <div class="mt-6 flex items-center gap-2.5">
-                                        <button data-tooltip-target="favourites-tooltip-3" type="button"
-                                            class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
-                                            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                        <div id="favourites-tooltip-3" role="tooltip"
-                                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                                            Add to favourites
-                                            <div class="tooltip-arrow" data-popper-arrow></div>
-                                        </div>
+<!-- People Also Bought Section -->
+<section class="py-8 bg-white dark:bg-gray-900">
+  <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+    <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">People also bought</h3>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      @php
+        // Get random products (assuming you have a collection of related products)
+        $randomProducts = App\Models\Product::inRandomOrder()->limit(3)->get();
+      @endphp
 
-                                        <button type="button"
-                                            class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                            <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7h-1M8 7h-.688M13 5v4m-2-2h4" />
-                                            </svg>
-                                            Add to cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+      @foreach($randomProducts as $product)
+      <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+        <a href="{{ route('product.show', $product->id) }}" class="block p-4">
+          <div class="flex justify-center">
+            <img class="w-32 h-32 object-contain dark:hidden" src="/image/{{ $product->image }}" alt="{{ $product->name }}" />
+          </div>
+          
+          <div class="p-4">
+            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-2 hover:underline">
+              {{ $product->name }}
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+              {{ Str::limit($product->description, 80) }}
+            </p>
+          </div>
+        </a>
+        
+        <div class="px-4 pb-4">
+          <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <button type="submit" 
+                    class="w-full flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded-lg transition-colors duration-300">
+              <svg class="w-5 h-5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" 
+                   width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
+                      stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7h-1M8 7h-.688M13 5v4m-2-2h4"/>
+              </svg>
+              Add to cart
+            </button>
+          </form>
+        </div>
+      </div>
+      @endforeach
+    </div>
+  </div>
 </section>
 
 
 
     </body>
-
     </html>
 
 </x-app-layout>
