@@ -73,9 +73,9 @@ class SellerController extends Controller
             $folderPath = public_path("image/{$categoryName}");
             
             // Make sure the folder exists
-            if (!file_exists($folderPath)) {
-                mkdir($folderPath, 0777, true); // Create directory if not exists
-            }
+            // if (!file_exists($folderPath)) {
+            //     mkdir($folderPath, 0777, true); // Create directory if not exists
+            // }
 
             // Move the image to the category-specific folder
             $image->move($folderPath, $imageName); 
