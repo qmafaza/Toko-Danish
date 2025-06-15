@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/seller/setup', [SellerController::class, 'setup'])->name('seller.register');
     Route::post('/seller', [SellerController::class, 'store'])->name('seller.store');
+    Route::put('/seller', [SellerController::class, 'update_profile'])->name('seller.profile.update');
 
     Route::post('/products/{product}/ratings', [ProductRatingController::class, 'store'])
     ->name('products.ratings.store');

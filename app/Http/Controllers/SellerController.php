@@ -147,9 +147,23 @@ class SellerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update_profile(Request $request)
     {
-        //
+        $user = Auth::user();
+        $seller = Seller::where('user_id', $user->id);
+        
+        $validated = $request->validate([
+            'store_name' => 'required|string|max:255',
+            'contact_person' => 'required|string|max:255',
+            'seller_address' => 'required|string',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'contact_number' => 'required|string',
+        ]);
+        
+        // Update user data
+        $seller->update($validated);
+        
+        return back()->with('success', 'Profile updated successfully!');
     }
 
     /**

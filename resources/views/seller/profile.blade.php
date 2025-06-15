@@ -536,52 +536,41 @@
       </div>
       
       <!-- Modal body -->
-      <form id="sellerProfileForm" class="p-4 md:p-5" enctype="multipart/form-data">
-        <!-- Profile Photo Section -->
-        <div class="mb-6 flex flex-col items-center">
-          <div class="relative h-24 w-24 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">
-            <img id="profile-preview" src="https://via.placeholder.com/150" alt="Profile photo" class="h-full w-full object-cover">
-            <div id="initial-letter" class="absolute inset-0 flex items-center justify-center">
-              <span class="text-2xl font-bold text-gray-400">B</span>
-            </div>
-          </div>
-          <label for="profile-photo" class="mt-3 cursor-pointer text-sm font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-400">
-            Change photo
-            <input type="file" id="profile-photo" name="profile_photo" class="hidden" accept="image/*">
-          </label>
-        </div>
+       <form class="p-4 md:p-5" method="POST" action="{{ route('seller.profile.update') }}" enctype="multipart/form-data">
+          @csrf
+          @method('PUT')
 
         <div class="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <!-- Shop Owner Name -->
           <div class="col-span-2 sm:col-span-1">
-            <label for="owner_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Owner Name*</label>
-            <input type="text" id="owner_name" name="owner_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="Bagas XL" required />
+            <label for="contact_person" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Owner Name*</label>
+            <input type="text" id="contact_person" name="contact_person" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="faza ilwir" required />
           </div>
 
           <!-- Shop Name -->
           <div class="col-span-2 sm:col-span-1">
-            <label for="shop_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Name*</label>
-            <input type="text" id="shop_name" name="shop_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="Bagas Super Large" required />
+            <label for="store_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Name*</label>
+            <input type="text" id="store_name" name="store_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="fazawir" required />
           </div>
 
           <!-- Shop Address -->
           <div class="col-span-2">
-            <label for="shop_address" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Address*</label>
-            <textarea id="shop_address" name="shop_address" rows="3" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" required>Kos Al Super Dupah Souuwweeee</textarea>
+            <label for="seller_address" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Address*</label>
+            <textarea id="seller_address" name="seller_address" rows="3" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" required>sebelah aspa</textarea>
           </div>
 
           <!-- Email -->
           <div class="col-span-2 sm:col-span-1">
             <label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email Address*</label>
-            <input type="email" id="email" name="email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="bagasxl123@gmail.com" required />
+            <input type="email" id="email" name="email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="faza321@gmail.com" required />
           </div>
 
           <!-- Phone Number -->
           <div class="col-span-2 sm:col-span-1">
-            <label for="phone_number" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number*</label>
+            <label for="contact_number" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number*</label>
             <div class="flex">
               <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400">+62</span>
-              <input type="tel" id="phone_number" name="phone_number" class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="8123456789" required />
+              <input type="tel" id="contact_number" name="contact_number" class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="8123456789" required />
             </div>
           </div>
         </div>
@@ -596,29 +585,33 @@
       <script>
         document.addEventListener('DOMContentLoaded', function() {
           const form = document.getElementById('sellerProfileForm');
-          const profilePhotoInput = document.getElementById('profile-photo');
-          const profilePreview = document.getElementById('profile-preview');
-          const initialLetter = document.getElementById('initial-letter');
           const cancelBtn = document.getElementById('cancelBtn');
+          
+          // Data user yang sudah terdaftar
+          const userData = {
+            contact_person: "faza ilwir",
+            store_name: "fazawir",
+            seller_address: "sebelah aspa",
+            email: "faza321@gmail.com",
+            contact_number: "8123456789"
+          };
 
-          // Preview foto profil
-          profilePhotoInput.addEventListener('change', function(e) {
-            if (this.files && this.files[0]) {
-              const reader = new FileReader();
-              reader.onload = function(e) {
-                profilePreview.src = e.target.result;
-                initialLetter.style.display = 'none';
-              }
-              reader.readAsDataURL(this.files[0]);
-            }
-          });
+          // Set nilai awal form sesuai data user
+          function initializeForm() {
+            document.getElementById('contact_person').value = userData.contact_person;
+            document.getElementById('store_name').value = userData.store_name;
+            document.getElementById('seller_address').value = userData.seller_address;
+            document.getElementById('email').value = userData.email;
+            document.getElementById('contact_number').value = userData.contact_number;
+          }
 
-          // Tombol cancel
+          // Inisialisasi form saat pertama kali load
+          initializeForm();
+
+          // Tombol cancel - kembalikan ke nilai awal
           cancelBtn.addEventListener('click', function() {
             if(confirm('Apakah Anda yakin ingin membatalkan perubahan?')) {
-              form.reset();
-              profilePreview.src = 'https://via.placeholder.com/150';
-              initialLetter.style.display = 'flex';
+              initializeForm();
             }
           });
 
@@ -640,25 +633,33 @@
             });
 
             if (isValid) {
-              // Buat FormData untuk mengirim file
-              const formData = new FormData(form);
-              formData.append('country_code', '+62'); // Tambahkan kode negara
+              // Update data user dengan nilai baru dari form
+              userData.contact_person = document.getElementById('contact_person').value;
+              userData.store_name = document.getElementById('store_name').value;
+              userData.seller_address = document.getElementById('seller_address').value;
+              userData.email = document.getElementById('email').value;
+              userData.contact_number = document.getElementById('contact_number').value;
               
-              // Simulasi pengiriman data (ganti dengan AJAX/Fetch ke server)
-              console.log('Data yang dikirim:', Object.fromEntries(formData));
+              // Simpan perubahan (simulasi)
+              console.log('Data yang diperbarui:', userData);
               alert('Perubahan berhasil disimpan!');
               
-              // Untuk pengiriman nyata:
+              // Untuk implementasi nyata, gunakan:
               // fetch('/update-profile', {
               //   method: 'POST',
-              //   body: formData
+              //   headers: {
+              //     'Content-Type': 'application/json',
+              //   },
+              //   body: JSON.stringify(userData)
               // })
               // .then(response => response.json())
               // .then(data => {
               //   alert('Profil berhasil diperbarui!');
+              //   // Update data lokal jika perlu
               // })
               // .catch(error => {
               //   console.error('Error:', error);
+              //   alert('Gagal menyimpan perubahan');
               // });
             } else {
               alert('Harap isi semua field yang wajib diisi!');
