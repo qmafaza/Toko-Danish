@@ -75,7 +75,7 @@ class SellerController extends Controller
             // }
 
             // Move the image to the category-specific folder
-            $image->move($folderPath, $imageName); 
+            // $image->move($folderPath, $imageName); 
 
             // Store the image name relative to the public directory
             $validated['image'] = "/" . $imageName;
