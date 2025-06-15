@@ -61,6 +61,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.profile');
         Route::get('/seller/product', [SellerController::class, 'product'])->name('seller.product');
         Route::post('/seller/create', [SellerController::class, 'create_product'])->name('seller.create-product');
+        Route::get('/seller/editproduct/{id}', [SellerController::class, 'editproduct'])->name('seller.edit-product');
+        Route::get('/seller/products/{id}/edit', [SellerController::class, 'editProduct'])->name('seller.products.edit');
+        Route::put('/seller/products/{id}', [SellerController::class, 'update'])->name('seller.products.update');
         Route::delete('/product/{id}', [SellerController::class, 'destroy'])->name('product.destroy');
     });
 });
