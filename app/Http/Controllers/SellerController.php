@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Seller;
 use App\Models\Product;
+use App\Models\ProductRating;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -39,8 +40,9 @@ class SellerController extends Controller
                         ->firstOrFail();  
 
         $products = $seller->products;  
+        $categories = Category::all();
 
-        return view('seller.product', compact('products'));  
+        return view('seller.product', compact('products', 'categories'));  
     }  
 
 
@@ -171,6 +173,16 @@ class SellerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);  
+
+        if (!$product) {  
+            return redirect()->route('seller.product')->with('error', 'Product not found.');  
+        }  
+
+        ProductRating::where("product_id",$product->id)->delete();
+
+        $product->delete();  
+
+        return redirect()->route('seller.product')->with('success', 'Product deleted successfully.');
     }
 }
