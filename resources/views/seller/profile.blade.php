@@ -543,34 +543,34 @@
         <div class="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <!-- Shop Owner Name -->
           <div class="col-span-2 sm:col-span-1">
-            <label for="contact_person" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Owner Name*</label>
-            <input type="text" id="contact_person" name="contact_person" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="faza ilwir" required />
+            <label for="owner_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Owner Name*</label>
+            <input type="text" id="contact_person" name="contact_person" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="{{ $seller->contact_person }}" required />
           </div>
 
           <!-- Shop Name -->
           <div class="col-span-2 sm:col-span-1">
-            <label for="store_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Name*</label>
-            <input type="text" id="store_name" name="store_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="fazawir" required />
+            <label for="shop_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Name*</label>
+            <input type="text" id="store_name" name="store_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="{{ $seller->store_name }}" required />
           </div>
 
           <!-- Shop Address -->
           <div class="col-span-2">
-            <label for="seller_address" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Address*</label>
-            <textarea id="seller_address" name="seller_address" rows="3" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" required>sebelah aspa</textarea>
+            <label for="shop_address" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Shop Address*</label>
+            <textarea id="seller_address" name="seller_address" rows="3" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" required>{{ $seller->seller_address }}</textarea>
           </div>
 
           <!-- Email -->
           <div class="col-span-2 sm:col-span-1">
             <label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email Address*</label>
-            <input type="email" id="email" name="email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="faza321@gmail.com" required />
+            <input type="email" id="email" name="email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="{{ $seller->email }}" required />
           </div>
 
           <!-- Phone Number -->
           <div class="col-span-2 sm:col-span-1">
-            <label for="contact_number" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number*</label>
+            <label for="phone_number" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number*</label>
             <div class="flex">
-              <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400">+62</span>
-              <input type="tel" id="contact_number" name="contact_number" class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="8123456789" required />
+              
+              <input type="tel" id="contact_number" name="contact_number" class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="{{ $seller->contact_number }}" required />
             </div>
           </div>
         </div>
@@ -586,15 +586,6 @@
         document.addEventListener('DOMContentLoaded', function() {
           const form = document.getElementById('sellerProfileForm');
           const cancelBtn = document.getElementById('cancelBtn');
-          
-          // Data user yang sudah terdaftar
-          const userData = {
-            contact_person: "faza ilwir",
-            store_name: "fazawir",
-            seller_address: "sebelah aspa",
-            email: "faza321@gmail.com",
-            contact_number: "8123456789"
-          };
 
           // Set nilai awal form sesuai data user
           function initializeForm() {
@@ -634,11 +625,11 @@
 
             if (isValid) {
               // Update data user dengan nilai baru dari form
-              userData.contact_person = document.getElementById('contact_person').value;
-              userData.store_name = document.getElementById('store_name').value;
-              userData.seller_address = document.getElementById('seller_address').value;
+              userData.owner_name = document.getElementById('contact_person').value;
+              userData.shop_name = document.getElementById('store_name').value;
+              userData.shop_address = document.getElementById('seller_address').value;
               userData.email = document.getElementById('email').value;
-              userData.contact_number = document.getElementById('contact_number').value;
+              userData.phone_number = document.getElementById('contact_number').value;
               
               // Simpan perubahan (simulasi)
               console.log('Data yang diperbarui:', userData);
