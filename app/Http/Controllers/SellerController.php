@@ -62,15 +62,12 @@ class SellerController extends Controller
             'product_image' => 'nullable|image', // max 2MB
         ]);
 
-        $category = Category::find($validated['category_id']);
-        $categoryName = strtolower($category->name);
-    
         if ($request->hasFile('product_image')) {
             $image = $request->file('product_image');
             $imageName = time() . '_' . $image->getClientOriginalName(); // Safe unique filename
             
             // Create a folder for the category inside public/image
-            $folderPath = public_path("image/{$categoryName}");
+            $folderPath = public_path("image/");
             
             // Make sure the folder exists
             // if (!file_exists($folderPath)) {
@@ -81,7 +78,7 @@ class SellerController extends Controller
             $image->move($folderPath, $imageName); 
 
             // Store the image name relative to the public directory
-            $validated['image'] = "{$categoryName}/" . $imageName;
+            $validated['image'] = "/" . $imageName;
         }
 
         $seller = Seller::firstOrCreate(
