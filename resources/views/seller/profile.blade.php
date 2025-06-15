@@ -203,42 +203,49 @@
                       {{ $product->name }}
                   </a>
   
-                  <div class="mt-2 flex items-center gap-2">
-                      <div class="flex items-center">
-                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor" viewBox="0 0 24 24">
-                              <path
-                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                          </svg>
-  
-                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor" viewBox="0 0 24 24">
-                              <path
-                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                          </svg>
-  
-                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor" viewBox="0 0 24 24">
-                              <path
-                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                          </svg>
-  
-                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor" viewBox="0 0 24 24">
-                              <path
-                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                          </svg>
-  
-                          <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor" viewBox="0 0 24 24">
-                              <path
-                                  d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                          </svg>
-                      </div>
-  
-                      <p class="text-sm font-medium text-gray-900 dark:text-white">5.0</p>
-                      <p class="text-sm font-medium text-gray-500 dark:text-gray-400">(455)</p>
-                  </div>
+                                  <div class="mt-2 flex items-center gap-2">
+                    <div class="flex items-center">
+                        @php
+                            $averageRating = $product->ratings->avg('rating');
+                            $fullStars = floor($averageRating);
+                            $hasHalfStar = $averageRating - $fullStars >= 0.5;
+                        @endphp
+                        
+                        @for($i = 1; $i <= 5; $i++)
+                            @if($i <= $fullStars)
+                                <!-- Full star -->
+                                <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                </svg>
+                            @elseif($i == $fullStars + 1 && $hasHalfStar)
+                                <!-- Half star -->
+                                <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <defs>
+                                        <linearGradient id="half-star-{{ $product->id }}" x1="0" x2="100%" y1="0" y2="0">
+                                            <stop offset="50%" stop-color="#fbbf24" />
+                                            <stop offset="50%" stop-color="#d1d5db" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path fill="url(#half-star-{{ $product->id }})" 
+                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                </svg>
+                            @else
+                                <!-- Empty star -->
+                                <svg class="h-4 w-4 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                </svg>
+                            @endif
+                        @endfor
+                    </div>
+
+                    <p class="text-sm font-medium text-gray-900 dark:text-white">{{ number_format($averageRating, 1) }}</p>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">({{ $product->ratings->count() }})</p>
+                </div>
   
                   <div class="mt-4 flex items-center justify-between gap-4">
                       <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white">Rp {{ number_format($product->price) }}</p>
