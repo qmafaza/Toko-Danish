@@ -588,7 +588,17 @@
                                     </td>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div class="flex items-center">
-                                            <div class="h-4 w-4 rounded-full inline-block mr-2 bg-red-700"></div>
+                                            @php
+                                                $bgColorClass = 'bg-green-700';
+
+                                                if ($product->stock <= 5) {
+                                                    $bgColorClass = 'bg-red-700';
+                                                } elseif ($product->stock <= 10) {
+                                                    $bgColorClass = 'bg-yellow-500';
+                                                }
+                                            @endphp
+
+                                            <div class="h-4 w-4 rounded-full inline-block mr-2 {{ $bgColorClass }}"></div>
                                             {{ $product->stock }}
                                         </div>
                                     </td>
@@ -1463,14 +1473,9 @@
                             <select name="category_id" id="category"
                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option value="" disabled selected class="text-gray-400 dark:text-gray-400">Select category</option>
-                                <option value="0">Casing PC</option>
-                                <option value="1">CPU</option>
-                                <option value="2">GPU</option>
-                                <option value="3">Motherboard</option>
-                                <option value="4">Peripherals</option>
-                                <option value="5">Power Supply</option>
-                                <option value="6">RAM</option>
-                                <option value="7">Storage</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -1525,16 +1530,6 @@
                         <button type="submit"
                             class="w-full sm:w-auto justify-center text-white inline-flex bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Add
                             product</button>
-                        <button
-                            class="w-full sm:w-auto text-white justify-center inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                            <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Schedule
-                        </button>
                         <button data-modal-toggle="createProductModal" type="button"
                             class="w-full justify-center sm:w-auto text-gray-500 inline-flex items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                             <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
@@ -1598,7 +1593,7 @@
         class="fixed top-0 left-0 z-40 w-full h-screen max-w-3xl p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
         tabindex="-1" aria-labelledby="drawer-update-product-label" aria-hidden="true">
         <h5 id="drawer-label"
-            class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">New
+            class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Edit
             Product</h5>
         <button type="button" data-drawer-dismiss="drawer-update-product" aria-controls="drawer-update-product"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
@@ -1707,19 +1702,17 @@
                 <div>
                     <label for="product-brand"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
-                    <input type="text" id="product-brand"
+                    <input type="number" id="product-stock"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        value="Apple" placeholder="Product Brand" required="">
+                        value='4' placeholder="Product Stock" required="">
                 </div>
                 <div><label for="category"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label><select
                         id="category"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option selected="">Electronics</option>
-                        <option value="TV">TV/Monitors</option>
-                        <option value="PC">PC</option>
-                        <option value="GA">Gaming/Console</option>
-                        <option value="PH">Phones</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select></div>
                 <div>
                     <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>

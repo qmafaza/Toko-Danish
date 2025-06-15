@@ -39,8 +39,9 @@ class SellerController extends Controller
                         ->firstOrFail();  
 
         $products = $seller->products;  
+        $categories = Category::all();
 
-        return view('seller.product', compact('products'));  
+        return view('seller.product', compact('products', 'categories'));  
     }  
 
 
