@@ -1,50 +1,23 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "public/index.php",
-      "use": "@vercel/php"
+  "functions": {
+    "api/index.php": {
+      "runtime": "provided"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/build/(.*)",
       "dest": "/public/build/$1"
     },
     {
-      "src": "/storage/(.*)",
-      "dest": "/public/storage/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/index.php"
+      "src": "/(.*)", 
+      "dest": "/api/index.php"
     }
   ],
-  "env": {
-    "APP_ENV": "production",
-    "APP_DEBUG": "false",
-    "APP_URL": "https://yourproductionurl.com",
-
-    "APP_CONFIG_CACHE": "/tmp/config.php",
-    "APP_ROUTES_CACHE": "/tmp/routes.php",
-    "APP_EVENTS_CACHE": "/tmp/events.php",
-    "VIEW_COMPILED_PATH": "/tmp",
-
-    "DB_CONNECTION": "sqlite",
-    "SESSION_DRIVER": "cookie",
-    "SESSION_SECURE_COOKIE": "true",
-    
-    "VERCEL": "1",
-    "VERCEL_ENV": "production"
-  },
   "build": {
     "env": {
-      "NODE_ENV": "production",
-      "NODE_VERSION": "18.x"
+      "NODE_ENV": "production"
     }
   }
-}
+}   
