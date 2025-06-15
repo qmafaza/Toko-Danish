@@ -21,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+            if (config('app.env') != 'local') {
+                \URL::forceScheme('https');
+            }
+
         View::composer('*', function ($view) {
             if (Auth::check()) {
                 $view->with('cart_count', Auth::user()->cart->total_item);
