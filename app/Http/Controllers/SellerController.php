@@ -9,6 +9,7 @@ use App\Models\Seller;
 use App\Models\Product;
 use App\Models\ProductRating;
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -61,26 +62,23 @@ class SellerController extends Controller
             'product_image' => 'nullable|image', // max 2MB
         ]);
 
-        $category = Category::find($validated['category_id']);
-        $categoryName = strtolower($category->name);
-    
         if ($request->hasFile('product_image')) {
             $image = $request->file('product_image');
             $imageName = time() . '_' . $image->getClientOriginalName(); // Safe unique filename
             
             // Create a folder for the category inside public/image
-            $folderPath = public_path("image/{$categoryName}");
+            $folderPath = public_path("image/");
             
             // Make sure the folder exists
-            if (!file_exists($folderPath)) {
-                mkdir($folderPath, 0777, true); // Create directory if not exists
-            }
+            // if (!file_exists($folderPath)) {
+            //     mkdir($folderPath, 0777, true); // Create directory if not exists
+            // }
 
             // Move the image to the category-specific folder
-            $image->move($folderPath, $imageName); 
+            // $image->move($folderPath, $imageName); 
 
             // Store the image name relative to the public directory
-            $validated['image'] = "{$categoryName}/" . $imageName;
+            $validated['image'] = "/" . $imageName;
         }
 
         $seller = Seller::firstOrCreate(
@@ -141,9 +139,41 @@ class SellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function editProduct(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        
+        return view('seller.editproduct', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120'
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->update($validated);
+
+        // Handle new image uploads
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('product-images', 'public');
+                $product->images()->create(['path' => $path]);
+            }
+        }
+
+        return redirect()->route('seller.product')
+                        ->with('success', 'Product updated successfully');
     }
 
     /**
