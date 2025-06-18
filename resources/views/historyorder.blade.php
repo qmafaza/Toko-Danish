@@ -1,3 +1,4 @@
+<x-app-layout>
 <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
     @yield('content')
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
@@ -401,3 +402,4 @@
       </div>
     </div>
   </section>
+</x-app-layout>
