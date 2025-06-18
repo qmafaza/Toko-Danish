@@ -70,7 +70,7 @@
                         </svg>
                     </a>
                 </div>
-                
+
                 <div class="px-3">
                     @auth
                         @if (Auth::user()->is_seller())
