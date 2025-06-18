@@ -58,7 +58,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="px-3">
-                    <a href="{{ route('cart.index') }}">
+                    <a href="{{ route('history.order') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1" stroke="currentColor"
                             class="block h-7 w-7 text-gray-800 dark:text-gray-200">
