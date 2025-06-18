@@ -38,4 +38,10 @@ class PaymentController extends Controller
 
             return view('cart.payment', compact('subtotal', 'tax', 'total'));
         }
+
+
+    public function processpayment()
+    {
+        return view('historyorder');
+    }
 }
