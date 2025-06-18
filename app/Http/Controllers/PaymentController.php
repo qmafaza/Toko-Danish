@@ -44,4 +44,9 @@ class PaymentController extends Controller
     {
         return view('historyorder');
     }
+
+    public function summaryorder()
+    {
+        return view('summaryorder');
+    }
 }

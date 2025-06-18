@@ -430,6 +430,11 @@
             </dl>
 
             <dl class="flex items-center justify-between gap-4 py-3">
+                <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Pick-Up</dt>
+                <dd class="text-base font-medium text-gray-900 dark:text-white">${{ number_format($tax, 2) }}</dd>
+            </dl>
+
+            <dl class="flex items-center justify-between gap-4 py-3">
                 <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Tax</dt>
                 <dd class="text-base font-medium text-gray-900 dark:text-white">${{ number_format($tax, 2) }}</dd>
             </dl>
