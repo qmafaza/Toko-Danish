@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/cart/payment', [PaymentController::class, 'index'])->name('cart.checkout');
     Route::get('/historyorder', [PaymentController::class, 'processpayment'])->name('history.order');
+    Route::get('/summaryorder', [PaymentController::class, 'summaryorder'])->name('summary.order');
 
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
