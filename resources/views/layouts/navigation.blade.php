@@ -62,21 +62,15 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1" stroke="currentColor"
                             class="block h-7 w-7 text-gray-800 dark:text-gray-200">
-                            <!-- Dokumen -->
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 2h8l4 4v4.5M6 2v20h7.5" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 2h12l4 4v5M4 2v20h10.5" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14 2v6h6" />
-                            <!-- Garis isi dokumen -->
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h4M8 14h3" />
-                            <!-- Lingkaran jam -->
-                            <circle cx="18" cy="18" r="4" stroke="currentColor" stroke-width="1" fill="none" />
-                            <!-- Jarum jam -->
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 16v2l1.5 1" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.5 10h6.5M6.5 14h5.5" />
+                            <circle cx="19.5" cy="18.5" r="3.5" stroke="currentColor" stroke-width="1" fill="none" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 17v1.5l1 1" />
                         </svg>
                     </a>
                 </div>
-
-
-
+                
                 <div class="px-3">
                     @auth
                         @if (Auth::user()->is_seller())
