@@ -13,6 +13,9 @@ use App\Models\ProductRating;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
+
 
 
 class SellerController extends Controller
@@ -51,55 +54,53 @@ class SellerController extends Controller
      * Show the form for creating a new resource.
      */ // Jangan lupa import ini kalau pakai Auth
 
-     public function create_product(Request $request)
-     {
+
+
+    public function create_product(Request $request)
+    {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|string',
-            'product_image' => 'nullable|image', // max 2MB
+            'product_image' => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('product_image')) {
             $image = $request->file('product_image');
-            $imageName = time() . '_' . $image->getClientOriginalName(); // Safe unique filename
-            
-            // Create a folder for the category inside public/image
-            $folderPath = public_path("image/");
-            
-            // Make sure the folder exists
-            // if (!file_exists($folderPath)) {
-            //     mkdir($folderPath, 0777, true); // Create directory if not exists
-            // }
 
-            // Move the image to the category-specific folder
-            // $image->move($folderPath, $imageName); 
+            // Ambil nama kategori untuk dijadikan folder
+            $category = Category::find($validated['category_id']);
+            $folder = 'Image/' . strtolower($category->name); // sesuai struktur folder cloudinary kamu
 
-            // Store the image name relative to the public directory
-            $validated['image'] = "/" . $imageName;
+            // Upload ke Cloudinary
+            $uploadedFile = Cloudinary::upload($image->getRealPath(), [
+                'folder' => $folder,
+                'public_id' => pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME),
+            ]);
+
+            // Simpan URL gambar
+            $validated['image'] = $uploadedFile->getSecurePath();
         }
 
-        $seller = Seller::firstOrCreate(
-            ['user_id' => Auth::user()->id],
-        )->id;
-    
-        // 3. Create the product
+        $seller = Seller::firstOrCreate([
+            'user_id' => Auth::id(),
+        ])->id;
+
         Product::create([
             'name' => $validated['name'],
             'category_id' => $validated['category_id'],
             'price' => $validated['price'],
             'stock' => $validated['stock'],
             'description' => $validated['description'] ?? null,
-            'image' => $validated['image'] ?? null, // optional if no image uploaded
-            'seller_id' => $seller, // assuming you have seller authentication
+            'image' => $validated['image'] ?? null,
+            'seller_id' => $seller,
         ]);
-    
-        // 4. Redirect or return response
+
         return redirect()->route('seller.product')
             ->with('success', 'Product created successfully!');
-     }
+    }
 
 
 
