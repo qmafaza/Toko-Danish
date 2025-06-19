@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Product;
@@ -10,10 +11,12 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\PaymentController;
 use App\Models\Category;
+use Kavist\RajaOngkir\RajaOngkir;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
 
 Route::get('/', function () {
     $categories = Category::all();
@@ -48,6 +51,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart/payment', [PaymentController::class, 'index'])->name('cart.checkout');
     Route::get('/historyorder', [PaymentController::class, 'processpayment'])->name('history.order');
     Route::get('/summaryorder', [PaymentController::class, 'summaryorder'])->name('summary.order');
+
+    Route::get('/add-address', [AddressController::class, 'index'])->name('add.new-address');
+    Route::post('/add-address', [AddressController::class, 'store'])->name('address.store');
+
+    Route::get('/api/provinces', function (RajaOngkir $rajaOngkir) {
+        $daftarProvinsi = $rajaOngkir->provinsi()->all();
+        return response()->json($daftarProvinsi);
+    });
+
+    Route::get('/api/cities-by-province/{province_id}', function (RajaOngkir $rajaOngkir, $province_id) {
+        $daftarKota = $rajaOngkir->kota()->dariProvinsi($province_id)->get();
+
+        return response()->json($daftarKota);
+    });
 
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');

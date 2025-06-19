@@ -35,7 +35,9 @@ class PaymentController extends Controller
         $tax = session('tax', 0);
         $total = session('total', 0);
 
-        return view('cart.payment', compact('subtotal', 'tax', 'total'));
+        $addresses = Auth::user()->addresses;
+
+        return view('cart.payment', compact('subtotal', 'tax', 'total', 'addresses'));
     }
 
 
