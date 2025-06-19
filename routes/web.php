@@ -1,16 +1,15 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductRatingController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\PaymentController;
 use App\Models\Category;
-use App\Http\Controllers\OrderHistoryController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -37,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/history-order', [OrderHistoryController::class, 'index'])->name('history.order')->middleware('auth');
+    Route::get('/history-order', [OrderController::class, 'index'])->name('history.order')->middleware('auth');
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/{id}', [CartController::class, 'create'])->name('cart.add');

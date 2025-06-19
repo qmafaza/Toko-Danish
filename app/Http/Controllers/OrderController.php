@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Kavist\RajaOngkir\RajaOngkir;
 
-class OrderHistoryController extends Controller
+class OrderController extends Controller
 {
     public function index()
     {
