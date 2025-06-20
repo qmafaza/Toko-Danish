@@ -52,7 +52,9 @@ class SellerController extends Controller
      * Show the form for creating a new resource.
      */ // Jangan lupa import ini kalau pakai Auth
 
-     public function create_product(Request $request)
+
+
+public function create_product(Request $request)
      {
          $validated = $request->validate([
              'name' => 'required|string|max:255',
@@ -93,6 +95,7 @@ class SellerController extends Controller
          return redirect()->route('seller.product')
              ->with('success', 'Product created successfully!');
      }
+
 
 
 
@@ -151,7 +154,8 @@ class SellerController extends Controller
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120'
+            'weight' => 'required|numeric|min:0',
+            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
         $product = Product::findOrFail($id);

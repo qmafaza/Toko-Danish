@@ -15,8 +15,14 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
 
             'seller' => \App\Http\Middleware\Seller::class,
+
             
         ]);
+
+    //     $middleware->trustProxies(at: [
+    //     '0.0.0.0/0',
+    //     '*.railway.app'
+    // ]);
 
     })
     ->withExceptions(function (Exceptions $exceptions) {
