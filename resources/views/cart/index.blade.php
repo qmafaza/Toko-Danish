@@ -30,7 +30,7 @@
                                         class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                         <a href="{{ route('product.show', $cart_item->product->id) }}" class="shrink-0 md:order-1">
                                             <img class="h-20 w-20 dark:hidden"
-                                                src="/image/{{ $cart_item->product->image }}" alt="imac image" />
+                                                src="{{ $cart_item->product->image }}" alt="imac image" />
                                         </a>
 
                                         <label for="counter-input-{{ $cart_item->id }}" class="sr-only">Choose

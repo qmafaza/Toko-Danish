@@ -60,15 +60,17 @@ return [
             'report' => false,
         ],
 
-// 'cloudinary' => [
-//       'driver' => 'cloudinary',
-//       'key' => env('CLOUDINARY_KEY'),
-//       'secret' => env('CLOUDINARY_SECRET'),
-//       'cloud' => env('CLOUDINARY_CLOUD_NAME'),
-//       'url' => env('CLOUDINARY_URL'),
-//       'secure' => (bool) env('CLOUDINARY_SECURE', true),
-//       'prefix' => env('CLOUDINARY_PREFIX'),
-// ],
+        'gcs' => [
+            'driver' => 'gcs',
+            'key_file_path' => env('GOOGLE_CLOUD_KEY_FILE', base_path('laravel-gcs.json')),
+            'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'symbolic-base-463505-s3'),
+            'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'project_toko_danish'),
+            'path_prefix' => env('GOOGLE_CLOUD_STORAGE_PATH_PREFIX', ''),
+            'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', null),
+            'apiEndpoint' => env('GOOGLE_CLOUD_STORAGE_API_ENDPOINT', null),
+            'throw' => true,
+        ],
+
 
     ],
 
