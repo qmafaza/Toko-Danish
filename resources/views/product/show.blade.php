@@ -25,7 +25,7 @@
   <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
     <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
       <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-        <img class="w-full block dark:hidden" src="/image/{{ $product->image }}" alt="{{ $product->name }}"/>
+        <img class="w-full block dark:hidden" src="{{ $product->image }}" alt="{{ $product->name }}"/>
         <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
       </div>
 
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
         <a href="{{ route('product.show', $product->id) }}" class="block p-4">
           <div class="flex justify-center">
-            <img class="w-32 h-32 object-contain dark:hidden" src="/image/{{ $product->image }}" alt="{{ $product->name }}" />
+            <img class="w-32 h-32 object-contain dark:hidden" src="{{ $product->image }}" alt="{{ $product->name }}" />
           </div>
 
           <div class="p-4">

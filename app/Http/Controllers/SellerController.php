@@ -12,7 +12,7 @@ use App\Models\ProductRating;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
 
 
 class SellerController extends Controller
@@ -34,17 +34,18 @@ class SellerController extends Controller
         return view('seller.profile', compact('seller', 'products'));
     }
 
-    public function product()  
-    {  
-        $seller = Seller::with('products.category') // Eager load products with their categories  
-                        ->where('user_id', Auth::user()->id)  
-                        ->firstOrFail();  
 
-        $products = $seller->products;  
+    public function product()
+    {
+        $seller = Seller::with('products.category') // Eager load products with their categories
+                        ->where('user_id', Auth::user()->id)
+                        ->firstOrFail();
+
+        $products = $seller->products;
         $categories = Category::all();
 
-        return view('seller.product', compact('products', 'categories'));  
-    }  
+        return view('seller.product', compact('products', 'categories'));
+    }
 
 
     /**
@@ -53,52 +54,44 @@ class SellerController extends Controller
 
      public function create_product(Request $request)
      {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,id',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-            'description' => 'nullable|string',
-            'product_image' => 'nullable|image', // max 2MB
-        ]);
+         $validated = $request->validate([
+             'name' => 'required|string|max:255',
+             'category_id' => 'required|exists:categories,id',
+             'price' => 'required|numeric|min:0',
+             'stock' => 'required|integer|min:0',
+             'description' => 'nullable|string',
+             'product_image' => 'nullable|image|max:2048', // max 2MB
+         ]);
 
-        if ($request->hasFile('product_image')) {
-            $image = $request->file('product_image');
-            $imageName = time() . '_' . $image->getClientOriginalName(); // Safe unique filename
-            
-            // Create a folder for the category inside public/image
-            $folderPath = public_path("image/");
-            
-            // Make sure the folder exists
-            // if (!file_exists($folderPath)) {
-            //     mkdir($folderPath, 0777, true); // Create directory if not exists
-            // }
+         if ($request->hasFile('product_image')) {
+             $image = $request->file('product_image');
+             $imageName = time() . '_' . $image->getClientOriginalName();
+             $category = Category::find($validated['category_id']);
+             $folder = "image/" . strtolower($category->name); // Folder berdasarkan nama kategori
 
-            // Move the image to the category-specific folder
-            // $image->move($folderPath, $imageName); 
+             // Simpan ke GCS
+             $path = $image->storeAs($folder, $imageName, 'gcs');
 
-            // Store the image name relative to the public directory
-            $validated['image'] = "/" . $imageName;
-        }
+             // Jika visibility = 'private', sebaiknya generate signed URL untuk akses
+             $validated['image'] = Storage::disk('gcs')->url($path);
+             // Atau kalau mau akses terbatas: generateTemporaryUrl
+             // $validated['image'] = Storage::disk('gcs')->temporaryUrl($path, now()->addMinutes(30));
+         }
 
-        $seller = Seller::firstOrCreate(
-            ['user_id' => Auth::user()->id],
-        )->id;
-    
-        // 3. Create the product
-        Product::create([
-            'name' => $validated['name'],
-            'category_id' => $validated['category_id'],
-            'price' => $validated['price'],
-            'stock' => $validated['stock'],
-            'description' => $validated['description'] ?? null,
-            'image' => $validated['image'] ?? null, // optional if no image uploaded
-            'seller_id' => $seller, // assuming you have seller authentication
-        ]);
-    
-        // 4. Redirect or return response
-        return redirect()->route('seller.product')
-            ->with('success', 'Product created successfully!');
+         $seller = Seller::firstOrCreate(['user_id' => Auth::id()])->id;
+
+         Product::create([
+             'name' => $validated['name'],
+             'category_id' => $validated['category_id'],
+             'price' => $validated['price'],
+             'stock' => $validated['stock'],
+             'description' => $validated['description'] ?? null,
+             'image' => $validated['image'] ?? null,
+             'seller_id' => $seller,
+         ]);
+
+         return redirect()->route('seller.product')
+             ->with('success', 'Product created successfully!');
      }
 
 
@@ -143,7 +136,7 @@ class SellerController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
-        
+
         return view('seller.editproduct', [
             'product' => $product,
             'categories' => $categories
@@ -183,7 +176,7 @@ class SellerController extends Controller
     {
         $user = Auth::user();
         $seller = Seller::where('user_id', $user->id);
-        
+
         $validated = $request->validate([
             'store_name' => 'required|string|max:255',
             'contact_person' => 'required|string|max:255',
@@ -191,10 +184,10 @@ class SellerController extends Controller
             'email' => 'required|email|unique:users,email,'.$user->id,
             'contact_number' => 'required|string',
         ]);
-        
+
         // Update user data
         $seller->update($validated);
-        
+
         return back()->with('success', 'Profile updated successfully!');
     }
 
@@ -203,15 +196,15 @@ class SellerController extends Controller
      */
     public function destroy(string $id)
     {
-        $product = Product::find($id);  
+        $product = Product::find($id);
 
-        if (!$product) {  
-            return redirect()->route('seller.product')->with('error', 'Product not found.');  
-        }  
+        if (!$product) {
+            return redirect()->route('seller.product')->with('error', 'Product not found.');
+        }
 
         ProductRating::where("product_id",$product->id)->delete();
 
-        $product->delete();  
+        $product->delete();
 
         return redirect()->route('seller.product')->with('success', 'Product deleted successfully.');
     }

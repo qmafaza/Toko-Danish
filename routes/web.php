@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentController;
 use App\Models\Category;
 use App\Http\Controllers\OrderHistoryController;
 
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

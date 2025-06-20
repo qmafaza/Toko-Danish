@@ -52,7 +52,7 @@
                 {{ $seller->contact_person }}
               </dd>
             </dl>
-            
+
             <dl>
               <dt class="font-semibold text-gray-900 dark:text-white">Alamat Toko</dt>
               <dd class="flex items-center gap-1 text-gray-500 dark:text-gray-400">
@@ -67,7 +67,7 @@
               <dt class="font-semibold text-gray-900 dark:text-white">Email Address</dt>
               <dd class="text-gray-500 dark:text-gray-400">{{ $seller->email }}</dd>
             </dl>
-          
+
           </div>
 
           <div class="space-y-4">
@@ -75,7 +75,7 @@
               <dt class="font-semibold text-gray-900 dark:text-white">Phone Number</dt>
               <dd class="text-gray-500 dark:text-gray-400">{{ $seller->contact_number }}</dd>
             </dl>
-            
+
 
           </div>
         </div>
@@ -105,18 +105,18 @@
               <div class="h-56 w-full">
                   <a href="{{ route('product.show', $product->id) }}">
                       <img class="mx-auto h-full dark:hidden"
-                          src="/image/{{ $product->image }}" alt="" />
+                          src="{{ $product->image }}" alt="" />
                       {{-- <img class="mx-auto hidden h-full dark:block"
                           src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" /> --}}
                   </a>
               </div>
               <div class="pt-6">
-  
+
                   <a href="{{ route('product.show', $product->id) }}"
                       class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white line-clamp-2 overflow-hidden text-ellipsis">
                       {{ $product->name }}
                   </a>
-  
+
                                   <div class="mt-2 flex items-center gap-2">
                     <div class="flex items-center">
                         @php
@@ -124,7 +124,7 @@
                             $fullStars = floor($averageRating);
                             $hasHalfStar = $averageRating - $fullStars >= 0.5;
                         @endphp
-                        
+
                         @for($i = 1; $i <= 5; $i++)
                             @if($i <= $fullStars)
                                 <!-- Full star -->
@@ -143,7 +143,7 @@
                                             <stop offset="50%" stop-color="#d1d5db" />
                                         </linearGradient>
                                     </defs>
-                                    <path fill="url(#half-star-{{ $product->id }})" 
+                                    <path fill="url(#half-star-{{ $product->id }})"
                                         d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                                 </svg>
                             @else
@@ -160,7 +160,7 @@
                     <p class="text-sm font-medium text-gray-900 dark:text-white">{{ number_format($averageRating, 1) }}</p>
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">({{ $product->ratings->count() }})</p>
                 </div>
-  
+
                   <div class="mt-4 flex items-center justify-between gap-4">
                       <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white">Rp {{ number_format($product->price) }}</p>
                   </div>
@@ -178,17 +178,17 @@
               <a href="#" class="hover:underline">#FWB12546798</a>
             </dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/4 md:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Date:</dt>
             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">11.12.2023</dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/5 md:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Price:</dt>
             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">$499</dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/4 sm:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Status:</dt>
             <dd class="me-2 mt-1.5 inline-flex shrink-0 items-center rounded bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">
@@ -198,7 +198,7 @@
               In transit
             </dd>
           </dl>
-  
+
           {{-- <div class="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
             <button
               id="actionsMenuDropdownModal10"
@@ -249,17 +249,17 @@
               <a href="#" class="hover:underline">#FWB12546777</a>
             </dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/4 md:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Date:</dt>
             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">10.11.2024</dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/5 md:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Price:</dt>
             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">$3,287</dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/4 sm:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Status:</dt>
             <dd class="mt-1.5 inline-flex items-center rounded bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900 dark:text-red-300">
@@ -269,7 +269,7 @@
               Cancelled
             </dd>
           </dl>
-  
+
           {{-- <div class="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
             <button
               id="actionsMenuDropdownModal11"
@@ -312,17 +312,17 @@
               <a href="#" class="hover:underline">#FWB12546846</a>
             </dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/4 md:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Date:</dt>
             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">07.11.2024</dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/5 md:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Price:</dt>
             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">$111</dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/4 sm:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Status:</dt>
             <dd class="mt-1.5 inline-flex items-center rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
@@ -332,7 +332,7 @@
               Completed
             </dd>
           </dl>
-  
+
           {{-- <div class="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
             <button
               id="actionsMenuDropdownModal12"
@@ -375,17 +375,17 @@
               <a href="#" class="hover:underline">#FWB12546212</a>
             </dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/4 md:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Date:</dt>
             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">18.10.2024</dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/5 md:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Price:</dt>
             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">$756</dd>
           </dl>
-  
+
           <dl class="w-1/2 sm:w-1/4 sm:flex-1 lg:w-auto">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Status:</dt>
             <dd class="mt-1.5 inline-flex items-center rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
@@ -395,7 +395,7 @@
               Completed
             </dd>
           </dl>
-  
+
           {{-- <div class="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
             <button
               id="actionsMenuDropdownModal13"
@@ -448,7 +448,7 @@
           <span class="sr-only">Close modal</span>
         </button>
       </div>
-      
+
       <!-- Modal body -->
        <form class="p-4 md:p-5" method="POST" action="{{ route('seller.profile.update') }}" enctype="multipart/form-data">
           @csrf
@@ -483,7 +483,7 @@
           <div class="col-span-2 sm:col-span-1">
             <label for="phone_number" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number*</label>
             <div class="flex">
-              
+
               <input type="tel" id="contact_number" name="contact_number" class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="{{ $seller->contact_number }}" required />
             </div>
           </div>
@@ -523,11 +523,11 @@
           // Submit form
           form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Validasi form
             const requiredFields = form.querySelectorAll('[required]');
             let isValid = true;
-            
+
             requiredFields.forEach(field => {
               if (!field.value.trim()) {
                 field.classList.add('border-red-500');
@@ -544,11 +544,11 @@
               userData.shop_address = document.getElementById('seller_address').value;
               userData.email = document.getElementById('email').value;
               userData.phone_number = document.getElementById('contact_number').value;
-              
+
               // Simpan perubahan (simulasi)
               console.log('Data yang diperbarui:', userData);
               alert('Perubahan berhasil disimpan!');
-              
+
               // Untuk implementasi nyata, gunakan:
               // fetch('/update-profile', {
               //   method: 'POST',
