@@ -63,6 +63,7 @@ public function create_product(Request $request)
              'stock' => 'required|integer|min:0',
              'description' => 'nullable|string',
              'product_image' => 'nullable|image|max:2048', // max 2MB
+             'weight' => 'required|numeric|min:0', // Tambahkan validasi untuk berat
          ]);
 
          if ($request->hasFile('product_image')) {
@@ -90,6 +91,7 @@ public function create_product(Request $request)
              'description' => $validated['description'] ?? null,
              'image' => $validated['image'] ?? null,
              'seller_id' => $seller,
+            'weight' => $validated['weight'], // Tambahkan berat produk
          ]);
 
          return redirect()->route('seller.product')
