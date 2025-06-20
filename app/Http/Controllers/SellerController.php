@@ -56,51 +56,61 @@ class SellerController extends Controller
 
 
 
-    public function create_product(Request $request)
-    {
+public function create_product(Request $request)
+     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
+            'weight' => 'required|numeric|min:0',
             'description' => 'nullable|string',
-            'product_image' => 'nullable|image|max:2048',
+            'product_image' => 'nullable|image',
         ]);
 
+        $category = Category::find($validated['category_id']);
+        $categoryName = strtolower($category->name);
+    
         if ($request->hasFile('product_image')) {
             $image = $request->file('product_image');
+            $imageName = time() . '_' . $image->getClientOriginalName(); // Safe unique filename
+            
+            // Create a folder for the category inside public/image
+            $folderPath = public_path("image/{$categoryName}");
+            
+            // Make sure the folder exists
+            if (!file_exists($folderPath)) {
+                mkdir($folderPath, 0777, true); // Create directory if not exists
+            }
 
-            // Ambil nama kategori untuk dijadikan folder
-            $category = Category::find($validated['category_id']);
-            $folder = 'Image/' . strtolower($category->name); // sesuai struktur folder cloudinary kamu
+            // Move the image to the category-specific folder
+            $image->move($folderPath, $imageName); 
 
-            // Upload ke Cloudinary
-            $uploadedFile = Cloudinary::upload($image->getRealPath(), [
-                'folder' => $folder,
-                'public_id' => pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME),
-            ]);
-
-            // Simpan URL gambar
-            $validated['image'] = $uploadedFile->getSecurePath();
+            // Store the image name relative to the public directory
+            $validated['image'] = "{$categoryName}/" . $imageName;
         }
 
-        $seller = Seller::firstOrCreate([
-            'user_id' => Auth::id(),
-        ])->id;
-
+        $seller = Seller::firstOrCreate(
+            ['user_id' => Auth::user()->id],
+        )->id;
+    
+        // 3. Create the product
         Product::create([
             'name' => $validated['name'],
             'category_id' => $validated['category_id'],
             'price' => $validated['price'],
             'stock' => $validated['stock'],
+            'weight' => $validated['weight'], // ✅ ditambahkan
             'description' => $validated['description'] ?? null,
             'image' => $validated['image'] ?? null,
-            'seller_id' => $seller,
+            'seller_id' => $seller, // assuming you have seller authentication
         ]);
-
+    
+        // 4. Redirect or return response
         return redirect()->route('seller.product')
             ->with('success', 'Product created successfully!');
-    }
+     }
+
 
 
 
@@ -159,7 +169,8 @@ class SellerController extends Controller
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120'
+            'weight' => 'required|numeric|min:0',
+            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
         $product = Product::findOrFail($id);
