@@ -100,7 +100,7 @@ public function create_product(Request $request)
             'category_id' => $validated['category_id'],
             'price' => $validated['price'],
             'stock' => $validated['stock'],
-            'weight' => $validated['weight'], // ✅ ditambahkan
+            'weight' => $validated['weight'], // ditambahkan
             'description' => $validated['description'] ?? null,
             'image' => $validated['image'] ?? null,
             'seller_id' => $seller, // assuming you have seller authentication
