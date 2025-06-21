@@ -157,22 +157,29 @@ public function create_product(Request $request)
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'weight' => 'required|numeric|min:0',
-            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120', // Sesuaikan dengan create
         ]);
 
         $product = Product::findOrFail($id);
-        $product->update($validated);
 
-        // Handle new image uploads
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = $image->store('product-images', 'public');
-                $product->images()->create(['path' => $path]);
-            }
+        // Handle image upload jika ada
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $category = Category::find($validated['category_id']);
+            $folder = "image/" . strtolower($category->name);
+
+            // Upload ke GCS
+            $path = $image->storeAs($folder, $imageName, 'gcs');
+            $imageUrl = Storage::disk('gcs')->url($path);
+
+            $validated['image'] = $imageUrl;
         }
 
+        $product->update($validated);
+
         return redirect()->route('seller.product')
-                        ->with('success', 'Product updated successfully');
+            ->with('success', 'Product updated successfully!');
     }
 
     /**
