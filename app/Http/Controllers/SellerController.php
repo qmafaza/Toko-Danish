@@ -81,21 +81,25 @@ public function create_product(Request $request)
              // $validated['image'] = Storage::disk('gcs')->temporaryUrl($path, now()->addMinutes(30));
          }
 
-         $seller = Seller::firstOrCreate(['user_id' => Auth::id()])->id;
-
-         Product::create([
-             'name' => $validated['name'],
-             'category_id' => $validated['category_id'],
-             'price' => $validated['price'],
-             'stock' => $validated['stock'],
-             'description' => $validated['description'] ?? null,
-             'image' => $validated['image'] ?? null,
-             'seller_id' => $seller,
-            'weight' => $validated['weight'], // Tambahkan berat produk
-         ]);
-
-         return redirect()->route('seller.product')
-             ->with('success', 'Product created successfully!');
+        $seller = Seller::firstOrCreate(
+            ['user_id' => Auth::user()->id],
+        )->id;
+    
+        // 3. Create the product
+        Product::create([
+            'name' => $validated['name'],
+            'category_id' => $validated['category_id'],
+            'price' => $validated['price'],
+            'stock' => $validated['stock'],
+            'weight' => $validated['weight'], // ditambahkan
+            'description' => $validated['description'] ?? null,
+            'image' => $validated['image'] ?? null,
+            'seller_id' => $seller, // assuming you have seller authentication
+        ]);
+    
+        // 4. Redirect or return response
+        return redirect()->route('seller.product')
+            ->with('success', 'Product created successfully!');
      }
 
 

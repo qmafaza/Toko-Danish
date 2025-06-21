@@ -43,7 +43,7 @@
             <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
               Sold by: <span class="font-medium">{{ $product->seller->store_name }}</span>
               <br>
-              Weight: <span class="font-medium">{{ $product->weight }} Kg </span>
+              Weight: <span class="font-medium">{{ $product->weight }} g </span>
             </p>
           </div>
 
