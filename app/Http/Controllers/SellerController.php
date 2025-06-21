@@ -35,16 +35,27 @@ class SellerController extends Controller
     }
 
 
-    public function product()
+    public function product(Request $request)
     {
-        $seller = Seller::with('products.category') // Eager load products with their categories
-                        ->where('user_id', Auth::user()->id)
-                        ->firstOrFail();
-
-        $products = $seller->products;
+        $seller = Seller::where('user_id', Auth::user()->id)->firstOrFail();
+        
+        // Ambil parameter pencarian
+        $search = $request->input('search');
+        
+        // Query dasar untuk produk milik seller
+        $query = Product::where('seller_id', $seller->id)
+            ->with('category'); // Eager load category
+        
+        // Tambahkan kondisi pencarian jika ada
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+        
+        // Paginasi dengan 5 item per halaman
+        $products = $query->paginate(5)->withQueryString();
         $categories = Category::all();
 
-        return view('seller.product', compact('products', 'categories'));
+        return view('seller.product', compact('products', 'categories', 'search'));
     }
 
 
