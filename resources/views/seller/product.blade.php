@@ -5,7 +5,7 @@
         <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
-            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            <div class="bg-white dark:bg-gr.ay-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div
                     class="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                     <div class="flex-1 flex items-center space-x-2">
@@ -154,19 +154,7 @@
 
                     
                                 <!-- Rating -->
-                                <h2 id="rating-heading">
-                                    <button type="button"
-                                        class="flex items-center justify-between w-full py-2 px-1.5 text-sm font-medium text-left text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
-                                        data-accordion-target="#rating-body" aria-expanded="true"
-                                        aria-controls="rating-body">
-                                        <span>Rating</span>
-                                        <svg aria-hidden="true" data-accordion-icon="" class="w-5 h-5 rotate-180 shrink-0"
-                                            fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                                        </svg>
-                                    </button>
-                                </h2>
+                                
                                 <div id="rating-body" class="hidden" aria-labelledby="rating-heading">
                                     <div class="py-2 space-y-2 font-light border-b border-gray-200 dark:border-gray-600">
                                         <div class="flex items-center">
@@ -362,12 +350,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Modal footer -->
-                            <div class="flex items-center space-x-4 rounded-b p-4 dark:border-gray-600 md:p-5">
-                                <button type="submit" class="rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-700 dark:hover:bg-primary-800 dark:focus:ring-primary-800">Show results</button>
-
-                                <button type="submit" name="reset" value="true" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Reset</button>
-                            </div>
+                            
                         </div>
                     </form>     
                     </div>
