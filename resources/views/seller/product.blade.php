@@ -81,59 +81,78 @@
                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                             </svg>
                         </button>
+                    <form action="{{ route('seller.product') }}" method="GET" class="flex items-center">
                         <div id="filterDropdown"
                             class="z-10 hidden px-3 pt-1 bg-white rounded-lg shadow w-80 dark:bg-gray-700 right-0">
-                                    <div class="w-full md:w-1/2">
-                                    <form action="{{ route('seller.product') }}" method="GET" class="flex items-center">
+                                   <div class="w-full md:w-1/2">
                                         <label for="search" class="sr-only">Search</label>
-                                        <div class="relative w-full">
-                                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                                                    fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
-                                                </svg>
+                                        <div class="flex items-center w-full space-x-2">
+                                            <!-- Search Input -->
+                                            <div class="relative flex-grow">
+                                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
+                                                    </svg>
+                                                </div>
+                                                <input type="text" name="search" id="search" value="{{ request('search') }}"
+                                                    placeholder="Search for products"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[200px] pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+
                                             </div>
-                                            <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Search for products"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+
+                                            <!-- Search Button -->
+                                            <button type="submit"
+                                                class="p-2 text-sm font-medium text-white bg-primary-700 rounded-lg border border-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                                </svg>
+                                                <span class="sr-only">Search</span>
+                                            </button>
                                         </div>
-                                        <button type="submit" class="ml-2 p-2 text-sm font-medium text-white bg-primary-700 rounded-lg border border-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                            </svg>
-                                            <span class="sr-only">Search</span>
-                                        </button>
-                                    </form>
-                                </div>
-                            <div id="accordion-flush" data-accordion="collapse"
-                                data-active-classes="text-black dark:text-white"
-                                data-inactive-classes="text-gray-500 dark:text-gray-400">
-                                <!-- Category -->
-                                <h2 id="category-heading">
-                                    <button type="button"
+                                    </div>
+                                    <div id="accordion-flush" data-accordion="collapse"
+                                    data-active-classes="text-black dark:text-white"
+                                    data-inactive-classes="text-gray-500 dark:text-gray-400">
+                                    <!-- Category -->
+                                    <h2 id="category-heading">
+                                        <button type="button"
                                         class="flex items-center justify-between w-full py-2 px-1.5 text-sm font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
                                         data-accordion-target="#category-body" aria-expanded="true"
                                         aria-controls="category-body">
                                         <span>Category</span>
                                         <svg aria-hidden="true" data-accordion-icon="" class="w-5 h-5 rotate-180 shrink-0"
-                                            fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                                        </svg>
-                                    </button>
-                                </h2>
-                                <div id="category-body" class="hidden" aria-labelledby="category-heading">
-                                    <div class="py-2 font-light border-b border-gray-200 dark:border-gray-600">
-                                        <ul class="space-y-2">
-                                            <li class="flex items-center">
-                                                <input id="apple" type="checkbox" value=""
-                                                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                <label for="apple"
-                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Apple
-                                                    (56)</label>
-                                        </ul>
-                                    </div>
+                                        fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                                    </svg>
+                                </button>
+                            </h2>
+                            <div id="category-body" class="hidden" aria-labelledby="category-heading">
+                                <div class="py-2 font-light border-b border-gray-200 dark:border-gray-600">
+                                    <ul class="space-y-2">
+                                        @if (request('query'))
+                                        <input id="" hidden name="query" value="{{ request('query') }}" />
+                                        @endif
+                                        @foreach ( $categories as $category)
+                                        @php
+                                        $checked = in_array($category->id, request('categories', [])) ? 'checked' : '';
+                                        @endphp
+                                        <li class="flex items-center">
+                                            <input id="" type="checkbox" name="categories[]" value="{{ $category->id }}" {{ $checked }}
+                                            class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for=""
+                                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ $category->name }}</label>
+                                        </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
+                            </div>
+
+                    
                                 <!-- Rating -->
                                 <h2 id="rating-heading">
                                     <button type="button"
@@ -343,7 +362,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Modal footer -->
+                            <div class="flex items-center space-x-4 rounded-b p-4 dark:border-gray-600 md:p-5">
+                                <button type="submit" class="rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-700 dark:hover:bg-primary-800 dark:focus:ring-primary-800">Show results</button>
+
+                                <button type="submit" name="reset" value="true" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Reset</button>
+                            </div>
                         </div>
+                    </form>     
                     </div>
                 </div>
                 <div class="overflow-x-auto">

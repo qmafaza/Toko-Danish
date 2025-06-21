@@ -37,25 +37,37 @@ class SellerController extends Controller
 
     public function product(Request $request)
     {
-        $seller = Seller::where('user_id', Auth::user()->id)->firstOrFail();
-        
-        // Ambil parameter pencarian
-        $search = $request->input('search');
-        
-        // Query dasar untuk produk milik seller
-        $query = Product::where('seller_id', $seller->id)
-            ->with('category'); // Eager load category
-        
-        // Tambahkan kondisi pencarian jika ada
-        if ($search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        }
-        
-        // Paginasi dengan 5 item per halaman
-        $products = $query->paginate(5)->withQueryString();
-        $categories = Category::all();
+    $seller = Seller::where('user_id', Auth::user()->id)->firstOrFail();
+    
+    // Ambil parameter pencarian dan filter
+    $search = $request->input('search');
+    $categoryFilter = $request->input('categories', []);
+    $reset = $request->input('reset');
+    
+    // Jika tombol reset diklik
+    if ($reset == 'true') {
+        return redirect()->route('seller.product');
+    }
+    
+    // Query dasar untuk produk milik seller
+    $query = Product::where('seller_id', $seller->id)
+        ->with('category'); // Eager load category
+    
+    // Tambahkan kondisi pencarian jika ada
+    if ($search) {
+        $query->where('name', 'like', '%' . $search . '%');
+    }
+    
+    // Tambahkan filter kategori jika dipilih
+    if (!empty($categoryFilter)) {
+        $query->whereIn('category_id', $categoryFilter);
+    }
+    
+    // Paginasi dengan 5 item per halaman
+    $products = $query->paginate(5)->withQueryString();
+    $categories = Category::all();
 
-        return view('seller.product', compact('products', 'categories', 'search'));
+    return view('seller.product', compact('products', 'categories', 'search', 'categoryFilter'));
     }
 
 
