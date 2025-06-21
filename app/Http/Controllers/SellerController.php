@@ -72,7 +72,7 @@ class SellerController extends Controller
 
             // Ambil nama kategori untuk dijadikan folder
             $category = Category::find($validated['category_id']);
-            $folder = 'Image/' . strtolower($category->name); // sesuai struktur folder cloudinary kamu
+            $folder = 'image/' . strtolower($category->name); // sesuai struktur folder cloudinary kamu
 
             // Upload ke Cloudinary
             $uploadedFile = Cloudinary::upload($image->getRealPath(), [

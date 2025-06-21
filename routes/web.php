@@ -66,6 +66,28 @@ Route::middleware('auth')->group(function () {
         return response()->json($daftarKota);
     });
 
+    Route::get('/api/ongkos-kirim/{origin}/{destination}/{weight}/{courier}', function (RajaOngkir $rajaOngkir, $origin, $destination, $weight, $courier) {
+        $cost = $rajaOngkir->ongkosKirim([
+            'origin'        => $origin,     
+            'destination'   => $destination,      
+            'weight'        => $weight,    
+            'courier'       => $courier   
+        ])->get();
+
+        $nama_jasa = $cost[0]['name'];
+
+        foreach ($cost[0]['costs'] as $row)
+        {
+            $daftarService[] = array(
+                'description' => $row['description'],
+                'biaya' => $row['cost'][0]['value'],
+                'etd' => $row['cost'][0]['etd']
+            );
+        }
+
+        return response()->json($daftarService);
+    });
+
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
