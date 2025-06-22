@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignId('user_id')->constrained('users');
             $table->integer('status')->default(0);
-            $table->date('order_date')->default(DB::raw('CURRENT_DATE'));;
+            $table->timestamp('order_date')->useCurrent();
             $table->integer('total_price')->default(0);
             $table->integer('total_item')->default(0);
             $table->timestamps();
