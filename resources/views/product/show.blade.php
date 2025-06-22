@@ -82,6 +82,7 @@
         <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
           <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4 sm:mt-0 flex items-center justify-center">
             @csrf
+            @if (!$product->is_own_product())
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <button type="submit" title="Add to Cart"
               class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center">
@@ -92,6 +93,7 @@
               </svg>
               Add to cart
             </button>
+            @endif
           </form>
         </div>
 
@@ -150,12 +152,14 @@
         <p class="text-2xl font-semibold leading-none text-gray-900 dark:text-white">
           {{ number_format($averageRating, 2) }} out of 5
         </p>
+        @if (!$product->is_own_product())
         <button type="button"
                 data-modal-target="review-modal"
                 data-modal-toggle="review-modal"
                 class="mb-2 me-2 rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
           Write a review
         </button>
+        @endif
       </div>
 
       <!-- Rating Distribution -->
@@ -370,6 +374,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="px-4 pb-4">
           <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4">
             @csrf
+            @if (!$product->is_own_product())
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <button type="submit"
                     class="w-full flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded-lg transition-colors duration-300">
@@ -380,6 +385,7 @@ document.addEventListener('DOMContentLoaded', function() {
               </svg>
               Add to cart
             </button>
+            @endif
           </form>
         </div>
       </div>

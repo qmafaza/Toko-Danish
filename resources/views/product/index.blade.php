@@ -118,6 +118,7 @@
                     <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white">Rp {{ number_format($product->price) }}</p>
                     <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4 sm:mt-0 flex items-center justify-center">
                         @csrf
+                        @if (!$product->is_own_product())
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                         <button type="submit"
@@ -130,6 +131,9 @@
                             </svg>
                             Add to cart
                         </button>
+                        
+                        @endif
+
                     </form>
                 </div>
             </div>
