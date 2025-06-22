@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id('report_id');
             $table->uuid('order_id');
             $table->foreignId('seller_id')->constrained('sellers');
-            $table->date('date')->default(DB::raw('CURRENT_DATE'));
+            $table->timestamp('date')->useCurrent();
             $table->integer('total_product_sold');
             $table->timestamps();
 
