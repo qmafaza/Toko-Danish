@@ -25,7 +25,7 @@
       }
     }
   </script>
-  
+
   <section class="min-h-screen bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
     @yield('content')
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
@@ -70,11 +70,11 @@
                   <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
                     <label for="address-{{ $address->id }}" class="flex items-start cursor-pointer">
                       <div class="flex h-5 items-center">
-                        <input 
-                          id="address-{{ $address->id }}" 
-                          aria-describedby="dhl-text" 
-                          {{ $address->is_primary ? 'checked' : '' }} 
-                          type="radio" 
+                        <input
+                          id="address-{{ $address->id }}"
+                          aria-describedby="dhl-text"
+                          {{ $address->is_primary ? 'checked' : '' }}
+                          type="radio"
                           name="selected_address"
                           value="{{ $address->city }}"
                           class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
@@ -91,7 +91,7 @@
                 @empty
                   <p class="mb-2 block text-sm font-medium text-red-500 dark:text-white"> No address found! </p>
                 @endforelse
-  
+
               </div>
             </div>
 
@@ -204,7 +204,9 @@
           <div class="space-y-3">
             {{-- <button type="submit" class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed to Payment</button> --}}
 
-            <button disabled type="submit" id="button-proceed" class="flex w-full items-center justify-center rounded-lg bg-gray-400 px-5 py-2.5 text-sm font-medium text-white cursor-not-allowed">Proceed to Payment</button>
+            <button
+
+            disabled type="submit" id="button-proceed" class="flex w-full items-center justify-center rounded-lg bg-gray-400 px-5 py-2.5 text-sm font-medium text-white cursor-not-allowed">Proceed to Payment</button>
 
             {{-- <p class="text-sm font-normal text-gray-500 dark:text-gray-400">One or more items in your cart require an account. <a href="#" title="" class="font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">Sign in or create an account now.</a>.</p> --}}
           </div>

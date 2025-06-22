@@ -37,7 +37,7 @@
         <div class="mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16">
           <div class="space-y-4">
             <div class="flex space-x-4">
-              <img class="h-16 w-16 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png" alt="Helene avatar" />
+                <img class="h-20 w-20 rounded-lg" src="/image/logo/danish.png" alt="Logo Danish">
               <div>
                 <h2 class="flex items-center text-xl font-bold leading-none text-gray-900 dark:text-white sm:text-2xl">{{ $seller->store_name }}</h2>
               </div>
@@ -235,7 +235,7 @@
             }
           </script>
 
-  
+
           {{-- <div class="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
             <button
               id="actionsMenuDropdownModal10"
@@ -310,7 +310,7 @@
             type="button"
             id="processButton"
             onclick="handleProcessing(this)"
-            
+
             class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto"
           >
             <svg class="-ms-0.5 me-1.5 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -339,7 +339,7 @@
               button.disabled = true;
             }
           </script>
-  
+
           {{-- <div class="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
             <button
               id="actionsMenuDropdownModal11"
@@ -406,7 +406,7 @@
             type="button"
             id="processButton"
             onclick="handleProcessing(this)"
-            
+
             class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto"
           >
             <svg class="-ms-0.5 me-1.5 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -435,7 +435,7 @@
               button.disabled = true;
             }
           </script>
-  
+
           {{-- <div class="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
             <button
               id="actionsMenuDropdownModal12"
@@ -502,7 +502,7 @@
             type="button"
             id="processButton"
             onclick="handleProcessing(this)"
-            
+
             class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto"
           >
             <svg class="-ms-0.5 me-1.5 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -532,7 +532,7 @@
             }
           </script>
 
-  
+
           {{-- <div class="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
             <button
               id="actionsMenuDropdownModal13"
