@@ -24,6 +24,7 @@ class PaymentController extends Controller
         // Hitung tax (contoh: 10%)
         $tax = $cart->total_price * 0.1;
         $total = $cart->total_price + $tax;
+        $weight = $cart->total_weight;
 
         // Simpan ke session
         session([
@@ -35,7 +36,9 @@ class PaymentController extends Controller
         $tax = session('tax', 0);
         $total = session('total', 0);
 
-        return view('cart.payment', compact('subtotal', 'tax', 'total'));
+        $addresses = Auth::user()->addresses;
+
+        return view('cart.payment', compact('subtotal', 'tax', 'total', 'addresses', 'weight'));
     }
 
 
