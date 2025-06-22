@@ -30,7 +30,8 @@
     @yield('content')
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <form action="#" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+    <form action="{{ route('checkout') }}" method="POST" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+      @csrf
       <ol class="items-center flex w-full max-w-2xl text-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
         <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 dark:text-primary-500 dark:after:border-gray-700 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
           <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] dark:after:text-gray-500 sm:after:hidden">
@@ -78,6 +79,7 @@
                           value="{{ $address->city }}"
                           class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
                         />
+                        <input hidden type="number" name="phone" id="" value="{{ $address->phone }}">
                       </div>
                       <div class="ms-4 text-sm">
                         <span class="font-medium leading-none text-gray-900 dark:text-white"> {{ $address->name }} </span>
@@ -256,14 +258,14 @@
               // Jangan lupa aktifkan lagi radio yang dipilih
               radio.disabled = false;
 
-              if (data.length === 0) {
+              if (data['services'].length === 0) {
                 ulServices.insertAdjacentHTML('beforeend', `
                   <li class="py-3 border-t">
                     <span class="text-red-600">No delivery service found, try another courier!</span>
                   </li>
                 `);
               } else {
-                for (let service of data) {
+                for (let service of data['services']) {
                   ulServices.insertAdjacentHTML('beforeend', `
                     <li class="py-3 border-t" onclick="setShippingFee()">
                       <label class="py-3 border-t cursor-pointer">

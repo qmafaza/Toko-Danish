@@ -39,14 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/history-order', [OrderController::class, 'index'])->name('history.order')->middleware('auth');
-
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/{id}', [CartController::class, 'create'])->name('cart.add');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::post('/cart/update-quantity/{id}', [CartController::class, 'update_quantity'])->name('cart.update-quantity');
-    Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-    Route::get('/card/payment', [PaymentController::class, 'index'])->name('payment.index');
 
     Route::get('/cart/payment', [PaymentController::class, 'index'])->name('cart.checkout');
     Route::get('/historyorder', [PaymentController::class, 'processpayment'])->name('history.order');
@@ -85,8 +81,14 @@ Route::middleware('auth')->group(function () {
             );
         }
 
-        return response()->json($daftarService);
+        return response()->json([
+            'nama_jasa' => $nama_jasa,
+            'services' => $daftarService
+        ]);
     });
+
+    Route::get('/history-order', [OrderController::class, 'index'])->name('history.order');
+    Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
