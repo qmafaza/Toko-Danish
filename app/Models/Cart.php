@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Ramsey\Uuid\Type\Integer;
 
 class Cart extends Model
 {
@@ -21,5 +22,12 @@ class Cart extends Model
     public function products(): HasMany
     {
         return $this->hasMany(CartItem::class);
+    }
+
+    public function total_cost()
+    {
+        return (int) $this->products->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
 {
@@ -17,9 +18,15 @@ class Product extends Model
         'description',
         'stock',
         'price',
+        'weight',
         'image',
         'category_id',
-        'seller_id'
+        'seller_id',
+<<<<<<< HEAD
+        'weight',
+=======
+        'weight'
+>>>>>>> lmao
     ];
 
     public function seller(): BelongsTo
@@ -47,5 +54,8 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    
+    public function is_own_product()
+    {
+        return $this->seller_id == Auth::user()->id;
+    }
 }
