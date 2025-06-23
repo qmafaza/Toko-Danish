@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->integer('total_price')->default(0);
             $table->integer('total_item')->default(0);
+            $table->integer('total_weight')->default(0);
             $table->timestamps();
         });
     }

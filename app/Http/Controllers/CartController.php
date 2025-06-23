@@ -49,6 +49,7 @@ class CartController extends Controller
 
         $cart->total_item++;
         $cart->total_price += $cartItem->product->price;
+        $cart->total_weight += $cartItem->product->weight;
         $cart->save();
 
         return redirect()->route('cart.index')->with('success', 'Product added to cart!');
@@ -70,6 +71,7 @@ class CartController extends Controller
             // Update total items and price in the cart
             $cart->total_item++;
             $cart->total_price += $cartItem->product->price;
+            $cart->total_weight += $cartItem->product->weight;
             $cart->save();
         } elseif ($request->action === 'decrement') {
             if ($cartItem->quantity > 1) {
@@ -80,11 +82,13 @@ class CartController extends Controller
                 // Update total items and price in the cart
                 $cart->total_item--;
                 $cart->total_price -= $cartItem->product->price;
+                $cart->total_weight -= $cartItem->product->weight;
                 $cart->save();
             } else {
                 // If the quantity is 1, delete the cart item
                 $cart->total_item--; // Adjust the total items in the cart before deleting
                 $cart->total_price -= $cartItem->product->price; // Adjust the price before deleting
+                $cart->total_weight -= $cartItem->product->weight;
                 $cart->save();
 
                 $cartItem->delete();

@@ -7,9 +7,6 @@
         </div>
     </x-slot>
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +15,7 @@
         @yield('content')
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body>
+
     {{-- ini buat category --}}
     <div class="bg-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -101,13 +97,13 @@
         // Randomize produk dan ambil 12 item pertama (untuk tampilan 4x3)
         $randomProducts = $products->shuffle()->take(12);
     @endphp
-    
+
     @foreach ($randomProducts as $product)
         <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
             <div class="h-56 w-full">
                 <a href="{{ route('product.show', $product->id) }}">
                     <img class="mx-auto h-full dark:hidden"
-                        src="/image/{{ $product->image }}" alt="{{ $product->name }}" />
+                        src="{{ $product->image }}" alt="{{ $product->name }}" />
                 </a>
             </div>
             <div class="pt-6">
@@ -123,7 +119,7 @@
                             $fullStars = floor($averageRating);
                             $hasHalfStar = $averageRating - $fullStars >= 0.5;
                         @endphp
-                        
+
                         @for($i = 1; $i <= 5; $i++)
                             @if($i <= $fullStars)
                                 <!-- Full star -->
@@ -142,7 +138,7 @@
                                             <stop offset="50%" stop-color="#d1d5db" />
                                         </linearGradient>
                                     </defs>
-                                    <path fill="url(#half-star-{{ $product->id }})" 
+                                    <path fill="url(#half-star-{{ $product->id }})"
                                         d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                                 </svg>
                             @else
@@ -182,8 +178,5 @@
         </div>
     @endforeach
 </div>
-
-    </body>
-    </html>
 
 </x-app-layout>
