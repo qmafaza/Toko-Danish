@@ -43,7 +43,6 @@
         "DB_HOST": "8e2ot.h.filess.io",
         "DB_PORT": "3307",
         "DB_DATABASE": "tokodanish_boywashjet",
-        "DB_USERNAME": "tokodanish_boywashjet",
-        "DB_PASSWORD": "20d710257ffd679568d31ab5efc178dc158e79ff"
+        "DB_USERNAME": "tokodanish_boywashjet"
     }
 }
