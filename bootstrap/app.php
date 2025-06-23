@@ -19,6 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
             
         ]);
 
+        $middleware->validateCsrfTokens(except: [
+            '/login',
+            '/register',
+        ]);
+
     //     $middleware->trustProxies(at: [
     //     '0.0.0.0/0',
     //     '*.railway.app'
