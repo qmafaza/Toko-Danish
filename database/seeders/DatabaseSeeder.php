@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
                 Product::factory()->create([
                     'seller_id' => rand(1,10),
                     'category_id' => $j,
-                    'image' => strtolower($category) . '/' . strtolower($category) . $i . '.jpg'
+                    'image' => 'https://storage.googleapis.com/project_toko_danish/image/' . strtolower($category) . '/' . strtolower($category) . $i . '.jpg'
                 ]);
             }
 
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         // Create 3-5 random ratings for each product
         foreach ($products as $product) {
             $ratingCount = rand(3, 5);
-            
+
             for ($i = 0; $i < $ratingCount; $i++) {
                 ProductRating::create([
                     'product_id' => $product->id,
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
             'Good customer service too',
             'No complaints, works great'
         ];
-        
+
         return $reviews[array_rand($reviews)];
     }
 }

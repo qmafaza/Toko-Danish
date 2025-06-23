@@ -61,7 +61,7 @@
             <div class="h-56 w-full">
                 <a href="{{ route('product.show', $product->id) }}">
                     <img class="mx-auto h-full dark:hidden"
-                        src="/image/{{ $product->image }}" alt="{{ $product->name }}" />
+                        src="{{ $product->image }}" alt="{{ $product->name }}" />
                 </a>
             </div>
             <div class="pt-6">
@@ -77,7 +77,7 @@
                             $fullStars = floor($averageRating);
                             $hasHalfStar = $averageRating - $fullStars >= 0.5;
                         @endphp
-                        
+
                         @for($i = 1; $i <= 5; $i++)
                             @if($i <= $fullStars)
                                 <!-- Full star -->
@@ -96,7 +96,7 @@
                                             <stop offset="50%" stop-color="#d1d5db" />
                                         </linearGradient>
                                     </defs>
-                                    <path fill="url(#half-star-{{ $product->id }})" 
+                                    <path fill="url(#half-star-{{ $product->id }})"
                                         d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                                 </svg>
                             @else
@@ -118,6 +118,7 @@
                     <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white">Rp {{ number_format($product->price) }}</p>
                     <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4 sm:mt-0 flex items-center justify-center">
                         @csrf
+                        @if (!$product->is_own_product())
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                         <button type="submit"
@@ -130,6 +131,9 @@
                             </svg>
                             Add to cart
                         </button>
+                        
+                        @endif
+
                     </form>
                 </div>
             </div>
@@ -192,11 +196,11 @@
                                     </div>
 
                                 @endforeach
-                                                            
+
                                 </div>
-    
+
                                 <div class="space-y-2">
-                                    
+
                                 </div>
                             </div>
                         </div>

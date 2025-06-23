@@ -21,6 +21,7 @@ class ProductFactory extends Factory
             'description' => fake()->paragraph(),
             'stock' => rand(1,10),
             'price' =>fake()->randomElement(range(100000, 1000000, 50000)),
+            'weight' => rand(1,10)
         ];
     }
 }
