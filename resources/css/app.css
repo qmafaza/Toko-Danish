@@ -1,7 +1,7 @@
-@import "tailwindcss";
-@import "flowbite/src/themes/default";
-@import 'flowbite';
+@import "flowbite/src/themes/default"; /* Pastikan ini file CSS */
+@import 'flowbite'; /* Pastikan ini file CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @source "../views";
