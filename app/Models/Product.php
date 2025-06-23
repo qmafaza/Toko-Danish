@@ -21,12 +21,7 @@ class Product extends Model
         'weight',
         'image',
         'category_id',
-        'seller_id',
-<<<<<<< HEAD
-        'weight',
-=======
-        'weight'
->>>>>>> lmao
+        'seller_id'
     ];
 
     public function seller(): BelongsTo
