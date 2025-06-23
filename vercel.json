@@ -40,10 +40,10 @@
         "SESSION_DRIVER": "cookie",
 
         "DB_CONNECTION": "mysql",
-        "DB_HOST": "jbwin.h.filess.io",
+        "DB_HOST": "8e2ot.h.filess.io",
         "DB_PORT": "3307",
-        "DB_DATABASE": "managementhr_poolthank",
-        "DB_USERNAME": "managementhr_poolthank",
-        "DB_PASSWORD": "1519851a9613b654112ffa3bc9a6758f2e1d422b"
+        "DB_DATABASE": "tokodanish_boywashjet",
+        "DB_USERNAME": "tokodanish_boywashjet",
+        "DB_PASSWORD": "20d710257ffd679568d31ab5efc178dc158e79ff"
     }
 }
