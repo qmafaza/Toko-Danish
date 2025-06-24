@@ -9,6 +9,7 @@
             <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Order summary</h2>
 
             <div class="mt-6 sm:mt-8">
+                @foreach ($order_items as $item)
               <div class="relative overflow-x-auto border-b border-gray-200 dark:border-gray-800">
                 <table class="w-full text-left font-medium text-gray-900 dark:text-white md:table-fixed">
                   <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
@@ -17,80 +18,53 @@
                       <td class="whitespace-nowrap py-4 md:w-[384px]">
                         <div class="flex items-center gap-4">
                           <a href="#" class="flex items-center aspect-square w-10 h-10 shrink-0">
-                            <img class="h-auto w-full max-h-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-light.svg" alt="watch image" />
-                            <img class="hidden h-auto w-full max-h-full dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-dark.svg" alt="watch image" />
-                          <a href="#" class="hover:underline">Apple Watch SE</a>
+                            <img class="h-auto w-full max-h-full dark:hidden" src="{{ $item->product->image }}"/>
+                          <a href="#" class="hover:underline">{{ $item->product->name ?? 'Unknown Product' }}</a>
                         </div>
                       </td>
 
-                      <td class="p-4 text-base font-normal text-gray-900 dark:text-white">x2</td>
+                      <td class="p-4 text-base font-normal text-gray-900 dark:text-white">x{{ $item->quantity }}</td>
 
-                      <td class="p-4 text-right text-base font-bold text-gray-900 dark:text-white">$799</td>
+                      <td class="   text-right text-base font-bold text-gray-900 dark:text-white">Rp {{ $item->product->price * $item->quantity }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
-              <div class="mt-4 space-y-6">
-                <h4 class="text-xl font-semibold text-gray-900 dark:text-white">Order summary</h4>
+              <div class="space-y-4">
+                @endforeach
+                <div class="space-y-2">
+                    {{-- <dl class="flex items-center justify-between gap-4">
+                      <dt class="text-gray-500 dark:text-gray-400">
+                        {{ $item->product->name ?? 'Unknown Product' }} x {{ $item->quantity }}
+                      </dt>
+                      <dd class="text-base font-medium text-gray-900 dark:text-white">
+                        ${{ number_format($item->quantity, 2) }}
+                      </dd>
+                    </dl> --}}
 
-                <div class="space-y-4">
-                  <div class="space-y-2">
-                    <dl class="flex items-center justify-between gap-4">
-                      <dt class="text-gray-500 dark:text-gray-400">Original price</dt>
-                      <dd class="text-base font-medium text-gray-900 dark:text-white">$6,592.00</dd>
-                    </dl>
-
-                    <dl class="flex items-center justify-between gap-4">
-                      <dt class="text-gray-500 dark:text-gray-400">Store Pickup</dt>
-                      <dd class="text-base font-medium text-gray-900 dark:text-white">$99</dd>
-                    </dl>
-
-                    <dl class="flex items-center justify-between gap-4">
-                      <dt class="text-gray-500 dark:text-gray-400">Tax</dt>
-                      <dd class="text-base font-medium text-gray-900 dark:text-white">$799</dd>
-                    </dl>
-                  </div>
-
-                  <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                    <dt class="text-lg font-bold text-gray-900 dark:text-white">Total</dt>
-                    <dd class="text-lg font-bold text-gray-900 dark:text-white">$7,191.00</dd>
+                  <dl class="flex items-center justify-between gap-4">
+                    <dt class="text-gray-500 dark:text-gray-400">Store Pickup</dt>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">Rp {{ $order->pickup_fee }}</dd>
                   </dl>
+
+                  <dl class="flex items-center justify-between gap-4">
+                    <dt class="text-gray-500 dark:text-gray-400">Tax</dt>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">
+                      Rp {{ $order->tax }}
+                    </dd>
+                  </dl>
+
                 </div>
 
-                <div class="flex items-start sm:items-center">
-                  <input id="terms-checkbox-2" type="checkbox" value="" class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
-                  <label for="terms-checkbox-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> I agree with the <a href="#" title="" class="text-primary-700 underline hover:no-underline dark:text-primary-500">Terms and Conditions</a> of use of the Flowbite marketplace </label>
-                </div>
-
-                <div class="flex gap-4 mt-4">
-                  <!-- Tombol Back -->
-                  <a href="{{ route('history.order') }}" class="w-1/2">
-                    <button type="button" class="w-full flex items-center justify-center gap-2 rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                      </svg>
-                      Back to history order
-                    </button>
-                  </a>
-
-                  <!-- Tombol Finish -->
-                  <a href="{{ route('dashboard') }}" class="w-1/2">
-                    <button 
-                      type="button"
-                      onclick="return handleFinishConfirm()" 
-                      class="w-full flex items-center justify-center gap-2 rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                      Finish the order
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </a>
-                </div>
-
-
-
+                <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
+                  <dt class="text-lg font-bold text-gray-900 dark:text-white">Total</dt>
+                  <dd class="text-lg font-bold text-gray-900 dark:text-white">
+                    Rp {{$order->total_price }}
+                  </dd>
+                </dl>
               </div>
+
             </div>
           </div>
         </form>

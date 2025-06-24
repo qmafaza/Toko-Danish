@@ -14,12 +14,29 @@ class OrderController extends Controller
     public function index()
     {
         // Logika untuk mengambil data history order
-        // $orders = auth()->user()->orders()->with('items')->get();
-        
+        $orders = Auth::user()->orders()->get();
+
+
         return view('historyorder', [
-            // 'orders' => $orders
+            'orders' => $orders
         ]);
     }
+
+    public function ordersum($order_id)
+    {
+        // Logika untuk mengambil data history order
+        $order = Auth::user()->orders()->where('id', $order_id)->first();
+
+        if (!$order) {
+            return redirect()->route('history.order')->with('error', 'Order not found');
+        }
+
+        $order_items = $order->products()->get();
+
+
+        return view('summaryorder', compact('order', 'order_items'));
+    }
+
 
     public function checkout(Request $request)
     {
@@ -40,7 +57,9 @@ class OrderController extends Controller
             'status' => 1,
             'order_date' => now(),
             'total_price' => round($cart->total_price * 1.1 + $request['delivery_package']),
-            'total_item' => $cart->total_item
+            'total_item' => $cart->total_item,
+            'pickup_fee' => $request['delivery_package'],
+            'tax' => round($cart->total_price * 0.1),
         ]);
 
         foreach ($cart->products as $cartItem) {

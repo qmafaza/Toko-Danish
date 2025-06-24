@@ -13,7 +13,10 @@ class Order extends Model
         'user_id',
         'status',
         'total_item',
-        'total_price'
+        'total_price',
+        'order_date',
+        'pickup_fee',
+        'tax',
     ];
 
     public $incrementing = false; // UUID tidak auto-increment

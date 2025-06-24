@@ -65,10 +65,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/api/ongkos-kirim/{origin}/{destination}/{weight}/{courier}', function (RajaOngkir $rajaOngkir, $origin, $destination, $weight, $courier) {
         $cost = $rajaOngkir->ongkosKirim([
-            'origin'        => $origin,     
-            'destination'   => $destination,      
-            'weight'        => $weight,    
-            'courier'       => $courier   
+            'origin'        => $origin,
+            'destination'   => $destination,
+            'weight'        => $weight,
+            'courier'       => $courier
         ])->get();
 
         $nama_jasa = $cost[0]['name'];
@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/history-order', [OrderController::class, 'index'])->name('history.order');
+    Route::get('/summaryorder/{order_id}', [OrderController::class, 'ordersum'])->name('summary.order');
     Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');

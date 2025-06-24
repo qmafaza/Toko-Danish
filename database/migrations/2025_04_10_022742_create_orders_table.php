@@ -19,6 +19,9 @@ return new class extends Migration
             $table->timestamp('order_date')->useCurrent();
             $table->integer('total_price')->default(0);
             $table->integer('total_item')->default(0);
+            $table->integer('pickup_fee')->nullable();
+            $table->float('tax')->nullable();
+
             $table->timestamps();
         });
     }
