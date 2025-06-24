@@ -369,11 +369,10 @@
                                 <th scope="col" class="p-4">Product</th>
                                 <th scope="col" class="p-4">Category</th>
                                 <th scope="col" class="p-4">Stock</th>
-                                <th scope="col" class="p-4">Sales/Day</th>
-                                <th scope="col" class="p-4">Sales/Month</th>
+                                <th scope="col" class="p-4">Weight (g)</th>
+                                <th scope="col" class="p-4">Price</th>
                                 <th scope="col" class="p-4">Rating</th>
-                                <th scope="col" class="p-4">Terjual</th>
-                                <th scope="col" class="p-4">Pendapatan</th>
+                                {{-- <th scope="col" class="p-4">Terjual (pcs)</th> --}}
                                 <th scope="col" class="p-4">Update</th>
                             </tr>
                         </thead>
@@ -404,20 +403,22 @@
                                         <div class="flex items-center">
                                             @php
                                                 $bgColorClass = 'bg-green-700';
-
                                                 if ($product->stock <= 5) {
                                                     $bgColorClass = 'bg-red-700';
                                                 } elseif ($product->stock <= 10) {
                                                     $bgColorClass = 'bg-yellow-500';
                                                 }
                                             @endphp
-
                                             <div class="h-4 w-4 rounded-full inline-block mr-2 {{ $bgColorClass }}"></div>
                                             {{ $product->stock }}
                                         </div>
                                     </td>
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">1.47</td>
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">0.47</td>
+                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $product->weight }} g
+                                    </td>
+                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        Rp {{ number_format($product->price, 0, ',', '.') }}
+                                    </td>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div class="flex items-center">
                                             @php
@@ -459,17 +460,16 @@
                                             <span class="text-gray-500 dark:text-gray-400 ml-1">{{ number_format($averageRating, 1) }}  </span>
                                         </div>
                                     </td>
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{-- <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div class="flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor"
                                                 class="w-5 h-5 text-gray-400 mr-2" aria-hidden="true">
                                                 <path
                                                     d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
                                             </svg>
-                                            1.6M
+                                            {{ $product->sold ?? 0 }} pcs terjual
                                         </div>
-                                    </td>
-                                    <td class="px-4 py-3">$3.2M</td>
+                                    </td> --}}
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div class="flex items-center space-x-4">
                                             <a href="{{ route('seller.edit-product', $product->id) }}"
