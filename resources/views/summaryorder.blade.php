@@ -25,7 +25,7 @@
 
                       <td class="p-4 text-base font-normal text-gray-900 dark:text-white">x{{ $item->quantity }}</td>
 
-                      <td class="   text-right text-base font-bold text-gray-900 dark:text-white">Rp {{ $item->product->price * $item->quantity }}</td>
+                      <td class="   text-right text-base font-bold text-gray-900 dark:text-white">Rp {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -45,13 +45,13 @@
 
                   <dl class="flex items-center justify-between gap-4">
                     <dt class="text-gray-500 dark:text-gray-400">Store Pickup</dt>
-                    <dd class="text-base font-medium text-gray-900 dark:text-white">Rp {{ $order->pickup_fee }}</dd>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">Rp {{ number_format($order->pickup_fee, 0, ',', '.') }}</dd>
                   </dl>
 
                   <dl class="flex items-center justify-between gap-4">
                     <dt class="text-gray-500 dark:text-gray-400">Tax</dt>
                     <dd class="text-base font-medium text-gray-900 dark:text-white">
-                      Rp {{ $order->tax }}
+                      Rp {{ number_format($order->tax, 0, ',', '.') }}
                     </dd>
                   </dl>
 
@@ -60,7 +60,7 @@
                 <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                   <dt class="text-lg font-bold text-gray-900 dark:text-white">Total</dt>
                   <dd class="text-lg font-bold text-gray-900 dark:text-white">
-                    Rp {{$order->total_price }}
+                    Rp {{ number_format($order->total_price, 0, ',', '.') }}
                   </dd>
                 </dl>
               </div>
