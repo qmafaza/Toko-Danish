@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/cart/payment', [PaymentController::class, 'index'])->name('cart.checkout');
     // Route::get('/historyorder', [PaymentController::class, 'processpayment'])->name('history.order');
-    Route::get('/summaryorder', [PaymentController::class, 'summaryorder'])->name('summary.order');
+    // Route::get('/summaryorder', [PaymentController::class, 'summaryorder'])->name('summary.order');
 
     Route::get('/add-address', [AddressController::class, 'index'])->name('add.new-address');
     Route::post('/add-address', [AddressController::class, 'store'])->name('address.store');
@@ -112,6 +112,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/seller/products/{id}/edit', [SellerController::class, 'editProduct'])->name('seller.products.edit');
         Route::put('/seller/products/{id}', [SellerController::class, 'update'])->name('seller.products.update');
         Route::delete('/product/{id}', [SellerController::class, 'destroy'])->name('product.destroy');
+        Route::post('/change_status/{id}', [SellerController::class, 'change_status'])->name('change-status');
     });
 });
 
